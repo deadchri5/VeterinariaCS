@@ -1,0 +1,170 @@
+﻿<UserControl x:Class="Veterinaria.Views.AgendDateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Veterinaria.Views" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../res/images/golden.jpg"/>
+        </Grid.Background>
+        <DockPanel VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Agenda una cita" 
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           Background="Black"
+                           Padding="10"
+                           Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Margin="10"/>
+                <materialDesign:Card
+                        Opacity="0.89"
+                        Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                        Width="500"
+                        Height="360"
+                        Padding="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="1">
+
+                            <StackPanel x:Name="DateElements"
+                                        VerticalAlignment="Stretch"
+                                        Width="200"
+                                        Margin="20">
+                                <TextBlock Text="Selecciona la fecha"
+                                           Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"/>
+
+
+                                <DatePicker x:Name="Date"
+                                        FontSize="15"
+                                        materialDesign:HintAssist.Hint="Fecha"
+                                        materialDesign:CalendarAssist.IsHeaderVisible="False">
+                                    <DatePicker.SelectedDate>
+                                        <Binding Path="FutureValidatingDate"
+                                             UpdateSourceTrigger="PropertyChanged">
+                                        </Binding>
+                                    </DatePicker.SelectedDate>
+                                </DatePicker>
+                            </StackPanel>
+
+                            <StackPanel x:Name="HourElements"
+                                        VerticalAlignment="Stretch"
+                                        Width="200"
+                                        Margin="20">
+                                <TextBlock Text="Selecciona la hora"
+                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                           Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+
+                                <materialDesign:TimePicker x:Name="Hour"
+                                                            Is24Hours="False"
+                                                            />
+                            </StackPanel>
+
+                            <StackPanel x:Name="CodeElement"
+                                        VerticalAlignment="Stretch"
+                                        Width="200"
+                                        Margin="20">
+                                <TextBlock Text="Motivo de cita"
+                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                           Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                                <ComboBox materialDesign:HintAssist.Hint="Selecciona"
+                                          FontSize="15">
+                                    <ComboBoxItem Content="Consulta medica" />
+                                    <ComboBoxItem Content="Desparacitación" />
+                                    <ComboBoxItem Content="Esterilización" />
+                                    <ComboBoxItem Content="Tratamiento" />
+                                    <ComboBoxItem Content="Corte de pelo y baño" />
+                                    <ComboBoxItem Content="Otro" />
+                                </ComboBox>
+                            </StackPanel>
+                            
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="1">
+
+                            <StackPanel x:Name="ChoosePet"
+                                        VerticalAlignment="Stretch"
+                                        Margin="20"
+                                        Width="200">
+                                <TextBlock Text="¿Para que mascota será?"
+                                           FontSize="15"
+                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                           Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                                <ComboBox materialDesign:HintAssist.Hint="Seleccionar"
+                                          FontSize="15">
+                                    <ComboBoxItem Content="Perro 1" />
+                                    <ComboBoxItem Content="Gato 1" />
+                                    <ComboBoxItem Content="Perro 2" />
+                                    <ComboBoxItem Content="Gato 2" />
+                                    <ComboBoxItem Content="Máscota sin registrar" />
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel x:Name="ChooseDoctor"
+                                        VerticalAlignment="Stretch"
+                                        Margin="20"
+                                        Width="200">
+                                <TextBlock Text="Seleccióna veterinario"
+                                           FontSize="15"
+                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                           Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                                <ComboBox materialDesign:HintAssist.Hint="Seleccionar"
+                                          FontSize="15">
+                                    <ComboBoxItem Content="Mario Villalpando" />
+                                    <ComboBoxItem Content="Christian Ochoa"/>
+                                    <ComboBoxItem Content="Juan Pablo Rodríguez"/>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel x:Name="OptionalNotes"
+                                        VerticalAlignment="Stretch"
+                                        Margin="20"
+                                        Width="200">
+                                <TextBlock Text="Notas adicionales"
+                                           FontSize="15"
+                                           Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
+                                           Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
+                                <TextBox    TextWrapping="Wrap"
+                                            FontSize="15"
+                                            VerticalAlignment="Stretch"
+                                            MinWidth="200"
+                                            AcceptsReturn="True"
+                                            VerticalScrollBarVisibility="Auto"
+                                            SpellCheck.IsEnabled="True"
+                                            materialDesign:HintAssist.Hint="Información sobre la cita"
+                                            Height="40"
+                                            Text="" />
+                            </StackPanel>
+
+                            <StackPanel x:Name="ButtonAcept"
+                                        VerticalAlignment="Stretch"
+                                        Margin="10"
+                                        Width="200">
+                                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                        VerticalAlignment="Stretch"
+                                        Width="200"
+                                        FontSize="15"
+                                        ToolTip="Aceptar"
+                                        Content="Agendar cita" />
+                            </StackPanel>
+                            
+                        </StackPanel>
+                        
+                    </Grid>
+                </materialDesign:Card>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>
