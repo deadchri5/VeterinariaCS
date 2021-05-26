@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2021 a las 04:09:17
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.1
+-- Tiempo de generación: 26-05-2021 a las 09:26:52
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -50,6 +49,13 @@ CREATE TABLE `cliente` (
   `Password` varchar(100) NOT NULL,
   `Fk_tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tipo`) VALUES
+(1, 'Mario', 'Villalpando', 'eltrunco@gmail.com', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -140,6 +146,14 @@ CREATE TABLE `typeuser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `typeuser`
+--
+
+INSERT INTO `typeuser` (`Id`, `Nombre`, `Tipo`) VALUES
+(1, 'Doctor', 1),
+(2, 'Usuario', 2);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -214,7 +228,7 @@ ALTER TABLE `cita`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `doctor`
@@ -244,7 +258,7 @@ ALTER TABLE `typepet`
 -- AUTO_INCREMENT de la tabla `typeuser`
 --
 ALTER TABLE `typeuser`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
