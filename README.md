@@ -1,6 +1,6 @@
 # Veterinaria trunca (Github).
 
-## Imporatante! 
+## Importante! 
 
 Para compilar el proyecto se debe de instalar material design para WPF. desde la consola de Nuget.
 
