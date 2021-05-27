@@ -157,7 +157,7 @@
                                         Width="200"
                                         FontSize="15"
                                         ToolTip="Aceptar"
-                                        Content="Agendar cita" />
+                                        Content="Agendar cita" Click="agregarCita" />
                             </StackPanel>
                             
                         </StackPanel>
