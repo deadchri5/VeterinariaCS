@@ -40,7 +40,6 @@ namespace Veterinaria
             {
                 case "AgendDate":
                     DataContext = new AgendDateModel();
-                    MessageBox.Show("hola, soy el trunco lopez");
                     break;
                 case "RegisterPet":
                     DataContext = new PetRegisterModel();
@@ -54,6 +53,11 @@ namespace Veterinaria
                 default:
                     break;
             }
+        }
+
+        private void AgendDate_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
