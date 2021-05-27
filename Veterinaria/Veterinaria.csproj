@@ -165,6 +165,7 @@
     <Resource Include="res\images\registerBack.png" />
     <Resource Include="res\images\eXpresso.jpg" />
     <Resource Include="res\icons\done.png" />
+    <Resource Include="res\icons\error.png" />
     <Content Include="res\images\vet.jpg" />
   </ItemGroup>
   <ItemGroup>

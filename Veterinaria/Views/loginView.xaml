@@ -33,6 +33,76 @@
             <ImageBrush ImageSource="../res/images/CrimsonTide.jpg" Stretch="UniformToFill" />
         </Grid.Background>
 
+        <Canvas x:Name="CanvasLoading"
+                Visibility="Hidden"
+                Width="230"
+                Height="230"
+                Grid.Row="3"
+                Panel.ZIndex="10"
+                Grid.RowSpan="1">
+
+            <materialDesign:Card    Background="White"
+                                    Height="130"
+                                    Width="230" Cursor="Wait">
+                <DockPanel VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center">
+                        <materialDesign:Card    x:Name="loadingCircle"
+                                                UniformCornerRadius="14"
+                                                Padding="4"
+                                                Width="29"
+                                                Height="29">
+                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                    Value="50"
+                                    IsIndeterminate="True" />
+                        </materialDesign:Card>
+                        <TextBlock  x:Name="textCanvasLoading"
+                                    Text="Iniciando sesión..."
+                                    Margin="20"/>
+                    </StackPanel>
+                </DockPanel>
+
+            </materialDesign:Card>
+
+        </Canvas>
+
+        <Canvas x:Name="CanvasError"
+                Visibility="Hidden"
+                Width="230"
+                Height="130"
+                Grid.Row="3"
+                Panel.ZIndex="10"
+                Grid.RowSpan="1">
+
+            <materialDesign:Card    Background="White"
+                                    Height="130"
+                                    Width="230">
+                <DockPanel VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center">
+                        <materialDesign:Card    x:Name="doneIMage"
+                                                UniformCornerRadius="14"
+                                                Padding="4"
+                                                Width="29"
+                                                Height="29">
+                            <materialDesign:Card.Background>
+                                <ImageBrush ImageSource="../res/icons/error.png"/>
+                            </materialDesign:Card.Background>
+                        </materialDesign:Card>
+                        <TextBlock  x:Name="textDone"
+                                    Text="Datos incorrectos."
+                                    Margin="10"/>
+                        <Button x:Name="ButtonGoToLogin"
+                                Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                                Content="Aceptar" 
+                                Click="closeCanvas_Click" />
+                    </StackPanel>
+                </DockPanel>
+
+            </materialDesign:Card>
+
+        </Canvas>
+
         <DockPanel  Grid.Row="0"
                     Grid.RowSpan="1"
                     >

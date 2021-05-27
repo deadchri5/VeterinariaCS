@@ -48,7 +48,7 @@ namespace Veterinaria.DB
             }
         }
 
-        public void executeQuery(string query)
+        public void executeInsert(string query)
         {
             MySqlConnection connectionDB = new MySqlConnection(connectionString);
             OpenConnection(connectionDB);
@@ -68,8 +68,33 @@ namespace Veterinaria.DB
             catch (MySqlException e) 
             {
                 MessageBox.Show(e.Message, "Error en consulta.", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+        }
 
+        public string executeQuery(string query)
+        {
+            datos = "";
+            MySqlConnection connectionDB = new MySqlConnection(connectionString);
+            OpenConnection(connectionDB);
+            try
+            {
+                MySqlCommand command = new MySqlCommand(query);
+                command.Connection = connectionDB;
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    datos += reader.GetString(0) + "\n";
+                }
+                if (datos != null)
+                    return datos;
+                CloseConnection(connectionDB);
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message, "Error en consulta.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return "";
         }
 
     }

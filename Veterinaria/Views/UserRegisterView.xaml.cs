@@ -58,8 +58,8 @@ namespace Veterinaria.Views
             {
                 if (IsValidEmailAddress(email))
                 {
-                    db.executeQuery("INSERT INTO cliente(Nombre, Apellidos, Email, Password, FK_tipo) " +
-                            $"VALUES ('{name}', '{apellido}', '{email}', '{password}', '2')");
+                    db.executeInsert("INSERT INTO cliente(Nombre, Apellidos, Email, Password, FK_tipo) " +
+                                    $"VALUES ('{name}', '{apellido}', '{email}', '{password}', '2')");
                     CanvasLoading.Visibility = Visibility.Hidden;
                     CanvasDone.Visibility = Visibility.Visible;
                 }
