@@ -54,9 +54,9 @@ namespace Veterinaria.Views
             await Task.Delay(1500);
             if (password.Equals(DBpassword) && password.Length > 0)
             {
-                string DBName = db.executeQuery($"SELECT Nombre from Cliente WHERE Email='{email}'").Trim();
+                string userName = db.executeQuery($"SELECT Nombre from Cliente WHERE Email='{email}'").Trim();
                 CanvasLoading.Visibility = Visibility.Hidden;
-                MessageBox.Show($"¡ Bienvenido {DBName} !");
+                MessageBox.Show($"¡ Bienvenido {userName} !");
                 MainWindow main = new MainWindow();
                 main.Show();
                 this.Close();
