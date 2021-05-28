@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DB\DataBase.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\AgendDateModel.cs" />
     <Compile Include="ViewModels\EditUserDataModel.cs" />
     <Compile Include="ViewModels\PetRegisterModel.cs" />
@@ -168,9 +169,7 @@
     <Resource Include="res\icons\error.png" />
     <Content Include="res\images\vet.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

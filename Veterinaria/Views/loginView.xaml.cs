@@ -22,6 +22,7 @@ namespace Veterinaria.Views
     /// </summary>
     public partial class loginView : Window
     {
+
         public loginView()
         {
             InitializeComponent();
@@ -54,12 +55,13 @@ namespace Veterinaria.Views
             await Task.Delay(1500);
             if (password.Equals(DBpassword) && password.Length > 0)
             {
-                string userName = db.executeQuery($"SELECT Nombre from Cliente WHERE Email='{email}'").Trim();
                 CanvasLoading.Visibility = Visibility.Hidden;
-                MessageBox.Show($"¡ Bienvenido {userName} !");
-                MainWindow main = new MainWindow();
-                main.Show();
+                string userName = db.executeQuery($"SELECT Nombre from Cliente WHERE Email='{email}'").Trim();
+                string userSurename = db.executeQuery($"SELECT Apellidos from Cliente WHERE Email='{email}'").Trim();
+                Models.User user = new Models.User(email, userName, userSurename);
+                MainWindow main = new MainWindow(user);
                 this.Close();
+                main.Show();
             }
             else
             {

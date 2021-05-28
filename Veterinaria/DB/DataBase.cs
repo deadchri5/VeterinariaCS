@@ -14,7 +14,7 @@ namespace Veterinaria.DB
         private string bd;
         private string user;
         private string connectionString;
-        private string datos;
+        private string data;
 
         public DataBase(string server, string bd, string user)
         {
@@ -59,10 +59,10 @@ namespace Veterinaria.DB
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    datos += reader.GetString(0) + "\n";
+                    data += reader.GetString(0) + "\n";
                 }
-                if (datos != null)
-                    MessageBox.Show(datos);
+                if (data != null)
+                    MessageBox.Show(data);
                 CloseConnection(connectionDB);
             }
             catch (MySqlException e) 
@@ -74,7 +74,7 @@ namespace Veterinaria.DB
 
         public string executeQuery(string query)
         {
-            datos = "";
+            data = "";
             MySqlConnection connectionDB = new MySqlConnection(connectionString);
             OpenConnection(connectionDB);
             try
@@ -84,15 +84,19 @@ namespace Veterinaria.DB
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    datos += reader.GetString(0) + "\n";
+                    data += reader.GetString(0) + "\n";
                 }
-                if (datos != null)
-                    return datos;
+                if (data != null)
+                    return data;
                 CloseConnection(connectionDB);
             }
             catch (MySqlException e)
             {
-                MessageBox.Show(e.Message, "Error en consulta.", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return "";
         }

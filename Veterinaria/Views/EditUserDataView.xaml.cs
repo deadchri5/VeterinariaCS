@@ -20,6 +20,7 @@ namespace Veterinaria.Views
     /// </summary>
     public partial class EditUserDataView : UserControl
     {
+
         public EditUserDataView()
         {
             InitializeComponent();

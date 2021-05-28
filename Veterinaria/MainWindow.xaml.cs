@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Veterinaria.ViewModels;
+using Veterinaria.Models;
 
 namespace Veterinaria
 {
@@ -21,17 +22,14 @@ namespace Veterinaria
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+
+        User user;
+
+        public MainWindow(User user)
         {
+            this.user = user;
             InitializeComponent();
-        }
-
-        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
-        {
+            DataContext = new EditUserDataModel();
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
