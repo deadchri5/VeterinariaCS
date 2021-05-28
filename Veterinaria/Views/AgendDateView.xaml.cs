@@ -24,5 +24,10 @@ namespace Veterinaria.Views
         {
             InitializeComponent();
         }
+
+        private void agregarCita(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Nito was here");
+        }
     }
 }
