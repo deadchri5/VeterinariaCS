@@ -4,15 +4,82 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closing="windowClosing">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Height="600" Width="1080" Closing="windowClosing" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White">
+
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Menuclose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="open">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="close">
+            <BeginStoryboard Storyboard="{StaticResource Menuclose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="19*"/>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="159*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Botoncillo" HorizontalAlignment="Left" Margin="216.858,160,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2"/>
+        <Grid Height="70" VerticalAlignment="Top" Background="#FF622BC3">
+            <TextBlock Text="Veterinaria trunca" HorizontalAlignment="Center" FontSize="33"/>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Christian Ochoa" VerticalAlignment="Center" FontSize="18"/>
+                <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                <StackPanel Width="150">
+                    <Button Content="Cuenta"/>
+                    <Button Content="Configuraciones"/>
+                    <Button Content="Ayuda" />
+                        <Separator/>
+                        <Button Content="Salir" />
+                    </StackPanel>
+                    </materialDesign:PopupBox>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="50" HorizontalAlignment="Left" Background="#FF622BC3">
+            <StackPanel>
+                <Grid Height="150" Background="White">
+                    <Button x:Name="close" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="close_Click">
+                        <materialDesign:PackIcon Foreground="#FF622BC3" Kind="ArrowLeft" Width="25" Height="25"/>
+                    </Button>
+                    <Button x:Name="open" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="open_Click">
+                        <materialDesign:PackIcon Foreground="#FF622BC3" Kind="Menu" Width="25" Height="25"/>
+                    </Button>
+                </Grid>
+                <ListView Foreground="#FF622BC3">
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CalendarRange" Width="25" Height="25" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Citas" VerticalAlignment="Center" Margin="20 10" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Alert" Width="25" Height="25" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Emergencia" VerticalAlignment="Center" Margin="20 10" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountCircle" Width="25" Height="25" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Cuenta" VerticalAlignment="Center" Margin="20 10" FontSize="18"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Window>

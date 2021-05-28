@@ -26,7 +26,7 @@ namespace Doctor
         SerialPort arduinoPort; 
         public MainWindow()
         {
-            InicializarPantalla();
+            //InicializarPantalla();
             InitializeComponent();
             
         }
@@ -45,6 +45,18 @@ namespace Doctor
         private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             arduinoPort.Close();
+        }
+
+        private void close_Click(object sender, RoutedEventArgs e)
+        {
+            open.Visibility = Visibility.Visible;
+            close.Visibility = Visibility.Collapsed;
+        }
+
+        private void open_Click(object sender, RoutedEventArgs e)
+        {
+            open.Visibility = Visibility.Collapsed;
+            close.Visibility = Visibility.Visible;
         }
     }
 }
