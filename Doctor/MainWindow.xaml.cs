@@ -12,17 +12,39 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO.Ports;
 
 namespace Doctor
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
+    /// 
+  
     public partial class MainWindow : Window
     {
+        SerialPort arduinoPort; 
         public MainWindow()
         {
+            InicializarPantalla();
             InitializeComponent();
+            
+        }
+
+        void InicializarPantalla()
+        {
+            arduinoPort = new SerialPort
+            {
+                BaudRate = 9600,
+                PortName = "COM3",            
+            };
+            arduinoPort.Open();
+            arduinoPort.Write("Bienvenido");
+        }
+
+        private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            arduinoPort.Close();
         }
     }
 }
