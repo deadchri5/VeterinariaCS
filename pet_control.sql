@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-05-2021 a las 09:26:52
+-- Tiempo de generación: 29-05-2021 a las 05:05:41
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -32,8 +32,16 @@ CREATE TABLE `cita` (
   `Fecha` date NOT NULL,
   `Hora` time NOT NULL,
   `Codigo` varchar(100) NOT NULL,
-  `Fk_doctor` int(11) NOT NULL
+  `Fk_doctor` int(11) NOT NULL,
+  `Fk_Mascota` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`Id`, `Fecha`, `Hora`, `Codigo`, `Fk_doctor`, `Fk_Mascota`) VALUES
+(1, '2021-06-13', '15:30:00', 'CT0001', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -55,7 +63,10 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tipo`) VALUES
-(1, 'Mario', 'Villalpando', 'eltrunco@gmail.com', '123', 2);
+(1, 'Mario', 'Villalpando', 'eltrunco@gmail.com', '123', 2),
+(17, 'Trunco', 'Lopez', 'trunco@gmail.com', '123', 2),
+(18, 'Christian', 'Ochoa', 'deadchri5h@gmail.com', '123', 2),
+(19, 'Juan Pablo', 'Gutierrez', 'jp20110468@ceti.mx', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -71,6 +82,15 @@ CREATE TABLE `doctor` (
   `Password` varchar(100) NOT NULL,
   `Fk_tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `doctor`
+--
+
+INSERT INTO `doctor` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tipo`) VALUES
+(1, 'Mario', 'Villalpando Montoya', 'mario@veterinaria.com', '123', 1),
+(2, 'Juan Pablo', 'Rodríguez Gutíerrez', 'nito@veterinaria.com', '123', 1),
+(3, 'Christian', 'Ochoa Hernández', 'chris@veterinaria.com', '123', 1);
 
 -- --------------------------------------------------------
 
@@ -104,9 +124,17 @@ CREATE TABLE `mascota` (
   `Edad` int(11) NOT NULL,
   `Fk_tipo` int(11) NOT NULL,
   `Fk_dueno` int(11) NOT NULL,
-  `Fk_cita` int(11) NOT NULL,
-  `Fk_receta` int(11) NOT NULL
+  `Fk_cita` int(11) DEFAULT NULL,
+  `Fk_receta` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mascota`
+--
+
+INSERT INTO `mascota` (`Id`, `Nombre`, `Sexo`, `Edad`, `Fk_tipo`, `Fk_dueno`, `Fk_cita`, `Fk_receta`) VALUES
+(1, 'Bruno', 'Macho', 8, 1, 18, NULL, NULL),
+(2, 'Marcelo', 'Macho', 5, 2, 19, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -132,6 +160,15 @@ CREATE TABLE `typepet` (
   `Nombre` varchar(100) NOT NULL,
   `Tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `typepet`
+--
+
+INSERT INTO `typepet` (`Id`, `Nombre`, `Tipo`) VALUES
+(1, 'Perro', 1),
+(2, 'Gato', 2),
+(3, 'Roedor', 3);
 
 -- --------------------------------------------------------
 
@@ -190,6 +227,7 @@ ALTER TABLE `emergencia`
 -- Indices de la tabla `mascota`
 --
 ALTER TABLE `mascota`
+  ADD PRIMARY KEY (`Id`),
   ADD KEY `fk-tipom` (`Fk_tipo`),
   ADD KEY `fk-dueno` (`Fk_dueno`),
   ADD KEY `fk-cita` (`Fk_cita`),
@@ -222,19 +260,19 @@ ALTER TABLE `typeuser`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `emergencia`
@@ -252,7 +290,7 @@ ALTER TABLE `receta`
 -- AUTO_INCREMENT de la tabla `typepet`
 --
 ALTER TABLE `typepet`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `typeuser`
@@ -268,6 +306,7 @@ ALTER TABLE `typeuser`
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
+  ADD CONSTRAINT `Fk_Mascota` FOREIGN KEY (`Id`) REFERENCES `mascota` (`Id`),
   ADD CONSTRAINT `fk-doctor` FOREIGN KEY (`Fk_doctor`) REFERENCES `doctor` (`Id`);
 
 --
