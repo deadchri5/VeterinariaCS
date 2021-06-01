@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2021 a las 05:05:41
+-- Tiempo de generación: 01-06-2021 a las 08:10:36
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -41,7 +41,7 @@ CREATE TABLE `cita` (
 --
 
 INSERT INTO `cita` (`Id`, `Fecha`, `Hora`, `Codigo`, `Fk_doctor`, `Fk_Mascota`) VALUES
-(1, '2021-06-13', '15:30:00', 'CT0001', 2, 0);
+(1, '2021-06-13', '15:30:00', 'CT0001', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,8 @@ INSERT INTO `cliente` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tip
 (1, 'Mario', 'Villalpando', 'eltrunco@gmail.com', '123', 2),
 (17, 'Trunco', 'Lopez', 'trunco@gmail.com', '123', 2),
 (18, 'Christian', 'Ochoa', 'deadchri5h@gmail.com', '123', 2),
-(19, 'Juan Pablo', 'Gutierrez', 'jp20110468@ceti.mx', '123', 2);
+(19, 'Juan Pablo', 'Gutierrez', 'jp20110468@ceti.mx', '123', 2),
+(20, 'Adriana', 'Espinosa', 'liloth00814@gmail.com', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -133,8 +134,14 @@ CREATE TABLE `mascota` (
 --
 
 INSERT INTO `mascota` (`Id`, `Nombre`, `Sexo`, `Edad`, `Fk_tipo`, `Fk_dueno`, `Fk_cita`, `Fk_receta`) VALUES
-(1, 'Bruno', 'Macho', 8, 1, 18, NULL, NULL),
-(2, 'Marcelo', 'Macho', 5, 2, 19, NULL, NULL);
+(1, 'Bruno', 'Macho', 8, 1, 18, 1, NULL),
+(2, 'Marcelo', 'Macho', 5, 2, 19, NULL, NULL),
+(3, 'Teodoro', 'Macho', 5, 1, 18, NULL, NULL),
+(4, 'Firulais', 'Macho', 7, 1, 18, NULL, NULL),
+(5, 'Zicza', 'Hembra', 5, 1, 18, NULL, NULL),
+(6, 'Gumball', 'Macho', 2, 5, 1, NULL, NULL),
+(7, 'Snowball', 'Macho', 7, 2, 1, NULL, NULL),
+(8, 'Tortuga', 'Hembra', 15, 4, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,7 +175,10 @@ CREATE TABLE `typepet` (
 INSERT INTO `typepet` (`Id`, `Nombre`, `Tipo`) VALUES
 (1, 'Perro', 1),
 (2, 'Gato', 2),
-(3, 'Roedor', 3);
+(3, 'Roedor', 3),
+(4, 'Reptil', 4),
+(5, 'Ave', 5),
+(6, 'Otro', 6);
 
 -- --------------------------------------------------------
 
@@ -199,7 +209,8 @@ INSERT INTO `typeuser` (`Id`, `Nombre`, `Tipo`) VALUES
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `fk-doctor` (`Fk_doctor`);
+  ADD KEY `fk-doctor` (`Fk_doctor`),
+  ADD KEY `Fk_Mascota` (`Fk_Mascota`);
 
 --
 -- Indices de la tabla `cliente`
@@ -266,7 +277,7 @@ ALTER TABLE `cita`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `doctor`
@@ -281,6 +292,12 @@ ALTER TABLE `emergencia`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mascota`
+--
+ALTER TABLE `mascota`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de la tabla `receta`
 --
 ALTER TABLE `receta`
@@ -290,7 +307,7 @@ ALTER TABLE `receta`
 -- AUTO_INCREMENT de la tabla `typepet`
 --
 ALTER TABLE `typepet`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `typeuser`
@@ -306,7 +323,7 @@ ALTER TABLE `typeuser`
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD CONSTRAINT `Fk_Mascota` FOREIGN KEY (`Id`) REFERENCES `mascota` (`Id`),
+  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`Fk_Mascota`) REFERENCES `mascota` (`Id`),
   ADD CONSTRAINT `fk-doctor` FOREIGN KEY (`Fk_doctor`) REFERENCES `doctor` (`Id`);
 
 --
