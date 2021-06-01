@@ -9,16 +9,23 @@ namespace Veterinaria.Models
     public class User
     {
 
-        public string name { get; set; }
-        public string sureName { get; set; }
-        public string email { get; set; }
+        private int id;
+        private string name;
+        private string sureName;
+        private string email;
+        private string password;
 
-        public User(string email, string name, string sureName)
+        public User()
         {
-            this.name = name;
-            this.sureName = sureName;
-            this.email = email;
+
         }
+
+        //Get y set
+        public int Id { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public string SureName { get { return sureName; } set { sureName = value; } }
+        public string Email { get { return email; } set { email = value; } }
+        public string Password { get { return password; } set { password = value; } }
 
     }
 }

@@ -23,11 +23,8 @@ namespace Veterinaria
     public partial class MainWindow : Window
     {
 
-        User user;
-
-        public MainWindow(User user)
+        public MainWindow()
         {
-            this.user = user;
             InitializeComponent();
             DataContext = new EditUserDataModel();
         }
@@ -53,9 +50,5 @@ namespace Veterinaria
             }
         }
 
-        private void AgendDate_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

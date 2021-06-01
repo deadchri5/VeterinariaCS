@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Veterinaria.DB;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Veterinaria.Views
 {
@@ -58,8 +60,11 @@ namespace Veterinaria.Views
                 CanvasLoading.Visibility = Visibility.Hidden;
                 string userName = db.executeQuery($"SELECT Nombre from Cliente WHERE Email='{email}'").Trim();
                 string userSurename = db.executeQuery($"SELECT Apellidos from Cliente WHERE Email='{email}'").Trim();
-                Models.User user = new Models.User(email, userName, userSurename);
-                MainWindow main = new MainWindow(user);
+                string idStr = db.executeQuery($"SELECT Id from Cliente WHERE Email = '{email}'").Trim();
+                int id = int.Parse(idStr);
+                ReadData rd = new ReadData();
+                rd.saveUserInJSON(id, email, userName, userSurename, password);
+                MainWindow main = new MainWindow();
                 this.Close();
                 main.Show();
             }
@@ -74,5 +79,6 @@ namespace Veterinaria.Views
         {
             CanvasError.Visibility = Visibility.Hidden;
         }
+
     }
 }

@@ -16,6 +16,9 @@ namespace Veterinaria.DB
         private string connectionString;
         private string data;
 
+        private int count;
+        private List<string> list = new List<string>(); 
+
         public DataBase(string server, string bd, string user)
         {
             this.server = server;
@@ -99,6 +102,40 @@ namespace Veterinaria.DB
                 MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return "";
+        }
+
+        public List<string> exectueAdvancedQuery(string query)
+        {
+            MySqlConnection connectionDB = new MySqlConnection(connectionString);
+            OpenConnection(connectionDB);
+            try
+            {
+                MySqlCommand command = new MySqlCommand(query);
+                command.Connection = connectionDB;
+                MySqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    count = reader.FieldCount;
+                    while (reader.Read())
+                    {
+                        for (var i = 0; i < count; i++)
+                        {
+                            list.Add(reader.GetValue(i).ToString());
+                        }
+                    }
+                    reader.Close();
+                }
+                CloseConnection(connectionDB);
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return list;
         }
 
     }

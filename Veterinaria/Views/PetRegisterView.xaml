@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModel="clr-namespace:Veterinaria.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:PetRegisterModel/>
+    </UserControl.DataContext>
     <Grid Background="WhiteSmoke">
 
         <Grid.ColumnDefinitions>
@@ -56,6 +60,7 @@
                                            FontSize="15"/>
                                 <TextBox    x:Name="TextBoxName"
                                             materialDesign:HintAssist.Hint="Nombre"
+                                            Text="{Binding petName}"
                                             FontSize="15"
                                             VerticalAlignment="Center" 
                                             Margin="0"/>
@@ -69,6 +74,7 @@
                                            FontSize="15"/>
                                 <TextBox    x:Name="TextBoxAge"
                                             materialDesign:HintAssist.Hint="Edad"
+                                            Text="{Binding petAge}"
                                             FontSize="15"/>
                             </StackPanel>
 
@@ -80,11 +86,12 @@
                                            FontSize="15"/>
                                 <ComboBox           x:Name="ComboBoxType"
                                                     materialDesign:HintAssist.Hint="Tipo de mascota"
-                                                    FontSize="15">
-                                    <ComboBoxItem   Content="Perro" />
+                                                    FontSize="15"
+                                                    SelectedValue="{Binding kindOfPet, Mode=TwoWay}">
+                                    <ComboBoxItem   Content="Perro"/>
                                     <ComboBoxItem   Content="Gato" />
                                     <ComboBoxItem   Content="Roedor" />
-                                    <ComboBoxItem   Content="Reptíl" />
+                                    <ComboBoxItem   Content="Reptil" />
                                     <ComboBoxItem   Content="Ave" />
                                     <ComboBoxItem   Content="Otro" />
                                 </ComboBox>
@@ -101,13 +108,13 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <RadioButton    IsChecked="false"
+                                    <RadioButton    IsChecked="False"
                                                     x:Name="RadioButtonMacho"
                                                     Content="Macho"
                                                     Grid.Column="0"
                                                     Grid.ColumnSpan="1"
                                                     Style="{StaticResource MaterialDesignDarkRadioButton}" />
-                                    <RadioButton    IsChecked="false"
+                                    <RadioButton    IsChecked="False"
                                                     x:Name="RadioButtonHembra"
                                                     Content="Hembra"
                                                     Grid.Column="1"
@@ -123,8 +130,8 @@
                                         Width="200"
                                         Margin="5"
                                         ToolTip="Registrar mascota"
-                                        Content="Registrar" 
-                                        Click="BtnRegister_Click"/>
+                                        Content="Registrar"
+                                        Command="{Binding petRegisterCommand}"/>
                             </StackPanel>
                             
                         </StackPanel>
