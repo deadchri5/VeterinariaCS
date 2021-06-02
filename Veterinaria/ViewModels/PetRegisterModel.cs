@@ -14,8 +14,12 @@ namespace Veterinaria.ViewModels
         public string petName { get; set; }
         public uint petAge { get; set; }
         public string kindOfPet { get; set; }
-        public string genere { get; set; }
+        public string gender { get; set; }
         public int ownerID { get; set; }
+
+        public bool isRegister = false;
+
+        private bool[] _radioButtons = new bool[] { false, false };
 
         public PetRegisterCommand petRegisterCommand { get; private set; }
 
@@ -24,16 +28,30 @@ namespace Veterinaria.ViewModels
             petRegisterCommand = new PetRegisterCommand(registerNewPet);
         }
 
+        public bool[] RadioArray
+        {
+            get { return _radioButtons; }
+        }
+        public int SelectedMode
+        {
+            get { return Array.IndexOf(_radioButtons, true); }
+        }
+
         private void registerNewPet()
         {
+            isRegister = false;
+            if (RadioArray[0])
+                gender = "Macho";
+            else if (RadioArray[1])
+                gender = "Hembra";
             setUserID();
             if (dataValidate())
             {
                 int petInDBformat = assignPetType();
                 DB.DataBase db = new DB.DataBase("localhost", "pet_control", "root");
-                string q = db.executeQuery("INSERT INTO mascota (Nombre, Sexo, Edad, Fk_tipo, Fk_dueno)"
-                                                + $"VALUES('{petName}', 'Macho', {petAge}, {petInDBformat}, {ownerID})");
-                MessageBox.Show(q);
+                db.executeInsert("INSERT INTO mascota (Nombre, Sexo, Edad, Fk_tipo, Fk_dueno)"
+                                 + $"VALUES('{petName}', '{gender}', {petAge}, {petInDBformat}, {ownerID})");
+                isRegister = true;
             }
         }
 
@@ -47,8 +65,11 @@ namespace Veterinaria.ViewModels
 
         private bool dataValidate()
         {
-            if (petName != null && petAge >= 0 && kindOfPet != null)
-                return true;
+            if (petName != null && kindOfPet != null)
+            {
+                if (petAge >= 0)
+                    return true;
+            }
             return false;
         }
 
