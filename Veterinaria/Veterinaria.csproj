@@ -74,6 +74,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="ReadData.cs" />
     <Compile Include="ViewModels\AgendDateModel.cs" />
+    <Compile Include="ViewModels\Commands\EditUserDataCommand.cs" />
     <Compile Include="ViewModels\Commands\PetRegisterCommand.cs" />
     <Compile Include="ViewModels\EditUserDataModel.cs" />
     <Compile Include="ViewModels\PetRegisterModel.cs" />

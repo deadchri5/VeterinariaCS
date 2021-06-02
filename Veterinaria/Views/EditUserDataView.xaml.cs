@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Veterinaria.Models;
+using Veterinaria.ViewModels;
 
 namespace Veterinaria.Views
 {
@@ -22,10 +23,14 @@ namespace Veterinaria.Views
     public partial class EditUserDataView : UserControl
     {
 
+        EditUserDataModel userDataModel;
+
         public EditUserDataView()
         {
             InitializeComponent();
             checkItemsControl();
+            userDataModel = new EditUserDataModel();
+            DataContext = userDataModel;
         }
 
         private void checkItemsControl()
@@ -43,5 +48,39 @@ namespace Veterinaria.Views
             }
         }
 
+        private void Password_Changed(object sender, RoutedEventArgs e)
+        {
+            if (DataContext != null)
+            {
+                ((dynamic)DataContext).Password = ((PasswordBox)sender).Password;
+            }
+        }
+
+        private void EditData_Click(object sender, RoutedEventArgs e)
+        {
+            CanvasPassword.Visibility = Visibility.Visible;
+        }
+
+        private void ClosePasswordCanvas_Click(object sender, RoutedEventArgs e)
+        {
+            CanvasPassword.Visibility = Visibility.Hidden;
+        }
+
+        private async void ConfirmPassword_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(1000);
+            if (((dynamic)DataContext).isSuccess)
+            {
+                CanvasSuccess.Visibility = Visibility.Visible;
+                await Task.Delay(2000);
+                CanvasSuccess.Visibility = Visibility.Hidden;
+            }
+            if (((dynamic)DataContext).isError)
+            {
+                CanvasError.Visibility = Visibility.Visible;
+                await Task.Delay(2000);
+                CanvasError.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }

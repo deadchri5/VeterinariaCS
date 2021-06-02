@@ -22,11 +22,137 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Canvas x:Name="CanvasPassword"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Panel.ZIndex="10"
+                Visibility="Hidden">
+
+            <materialDesign:Card    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center" Width="266" Height="215">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Content="{materialDesign:PackIcon Close}"
+                            Background="Red"
+                            ToolTip="Close" 
+                            Grid.Column="3"
+                            Grid.Row="0"
+                            Width="48"
+                            Height="30" Click="ClosePasswordCanvas_Click"/>
+
+                    <StackPanel Margin="19.9,4.9,19.6,9.2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4"
+                                Grid.Row="1"
+                                Grid.RowSpan="3">
+
+                        <StackPanel x:Name="ConfirmPasswordElements" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock  Text="Por favor ingrese su contraseña."
+                                    FontSize="15"
+                                    Margin="5"/>
+                            <PasswordBox    x:Name="PasswordBoxConfirmPassword"
+                                        materialDesign:TextFieldAssist.HasClearButton="True"
+                                        materialDesign:HintAssist.HelperText="Ingrese su contraseña" 
+                                        Margin="5" PasswordChanged="Password_Changed"
+                                        />
+                            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Content="Confirmar" 
+                                Margin="30,50,30,30"
+                                Command="{Binding editUserDataCommand}" Click="ConfirmPassword_Click"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+
+        </Canvas>
+
+        <Canvas x:Name="CanvasSuccess"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Panel.ZIndex="10"
+                Visibility="Hidden">
+
+            <materialDesign:Card Canvas.Left="38" Canvas.Top="27">
+
+                <StackPanel Margin="30">
+                    <StackPanel HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+
+                        <Image Source="../res/icons/done.png"
+                               Width="50"
+                               Height="50"
+                               Margin="0,20,0,10"/>
+
+                        <TextBlock  Text="Datos modificados."
+                                    FontSize="15"
+                                    Margin="5"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </materialDesign:Card>
+
+        </Canvas>
+
+        <Canvas x:Name="CanvasError"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Panel.ZIndex="10"
+                Visibility="Hidden">
+
+            <materialDesign:Card Canvas.Left="38" Canvas.Top="27">
+
+                <StackPanel Margin="30">
+                    <StackPanel HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+
+                        <Image Source="../res/icons/error.png"
+                               Width="50"
+                               Height="50"
+                               Margin="0,20,0,10"/>
+
+                        <TextBlock  Text="Contraseña incorrecta."
+                                    FontSize="15"
+                                    Margin="5"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </materialDesign:Card>
+
+        </Canvas>
+
         <materialDesign:Card    VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 Padding="15"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="3" 
+                                Grid.Row="0"
+                                Grid.RowSpan="6"
                                 Height="385">
 
             <StackPanel Width="310">
@@ -47,7 +173,7 @@
                 <StackPanel Margin="5"
                             Width="200">
                     <TextBlock  FontSize="15"
-                                Text="Nombre"/>
+                                Text="Nombre(s)"/>
                     <TextBox    x:Name="TextBoxName"
                                 FontSize="15"
                                 materialDesign:HintAssist.Hint="Nombre"
@@ -58,7 +184,7 @@
                 <StackPanel Margin="5"
                             Width="200">
                     <TextBlock  FontSize="15"
-                                Text="Apellido"/>
+                                Text="Apellido(s)"/>
                     <TextBox    x:Name="TextBoxLastName"
                                 FontSize="15"
                                 materialDesign:HintAssist.Hint="Apellido"
@@ -80,8 +206,8 @@
                 <StackPanel Margin="20"
                             Width="200">
                     <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Content="Guardar" 
-                            HorizontalAlignment="Right"/>
+                            Content="Editar" 
+                            HorizontalAlignment="Right" Click="EditData_Click"/>
                 </StackPanel>
 
             </StackPanel>
@@ -89,8 +215,10 @@
         </materialDesign:Card>
 
 
-        <Grid Grid.Column="3"
+        <Grid       Grid.Column="3"
                     Grid.ColumnSpan="3"
+                    Grid.Row="0"
+                    Grid.RowSpan="6"
                     HorizontalAlignment="Center"
                     Width="400"
                     Height="400"
