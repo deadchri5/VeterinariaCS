@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Veterinaria.ViewModels;
 
 namespace Veterinaria.Views
 {
@@ -22,6 +23,7 @@ namespace Veterinaria.Views
     {
         public AgendDateView()
         {
+            DataContext = new AgendDateModel();
             InitializeComponent();
         }
 

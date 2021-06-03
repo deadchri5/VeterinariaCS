@@ -28,6 +28,8 @@ namespace Veterinaria.Views
         public loginView()
         {
             InitializeComponent();
+            TextBoxEmail.Text = "deadchri5h@gmail.com";
+            TextBoxPassword.Password = "123";
         }
 
         private void OpenRegisterView_Click(object sender, RoutedEventArgs e)
