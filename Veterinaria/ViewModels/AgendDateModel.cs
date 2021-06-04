@@ -9,7 +9,7 @@ namespace Veterinaria.ViewModels
 {
     public class AgendDateModel
     {
-        public string date { get; set; }
+        public DateTime date { get; set; } = DateTime.Now;
         public string hour { get; set; }
         public string reason { get; set; }
         public string petName { get; set; }
@@ -29,6 +29,7 @@ namespace Veterinaria.ViewModels
         public string additionalNote { get; set; }
         public Models.User user;
         public GenericCommand genericCommand { get; private set; }
+        string codeOfDate;
 
         public AgendDateModel()
         {
@@ -43,13 +44,12 @@ namespace Veterinaria.ViewModels
             if (date != null && hour != null && reason != null
                           && petName != null && doctor != null)
             {
-                string _date = (date.Remove(10, date.Length - 10)).Trim();
-                Console.WriteLine(_date);
+                string _date = date.ToString("yyyy-MM-dd");
                 string _hour = (hour.Remove(0, hour.Length - 11).Remove(8)).Trim();
                 string doctorID = doctor.Remove(1, doctor.Length-1);
                 Guid guid = Guid.NewGuid();
                 string str = guid.ToString();
-                string codeOfDate = str.Remove(8, str.Length - 8);
+                codeOfDate = str.Remove(8, str.Length - 8);
                 DB.DataBase db = new DB.DataBase("localhost", "pet_control", "root");
                 string petID = db.executeQuery($"SELECT Id FROM mascota WHERE Nombre = '{petName}' AND Fk_dueno = '{user.Id}'");
                 if (petID != null)
@@ -58,13 +58,24 @@ namespace Veterinaria.ViewModels
                     {
                         db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo, Notas)" +
                                     $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}', '{note}')");
+                        setAppoinmentInPetTable();
                     }
                     else {
                         db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo)" +
                                     $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}')");
+                        setAppoinmentInPetTable();
                     }
                 }
             }
+        }
+
+        private async void setAppoinmentInPetTable()
+        {
+            await Task.Delay(100);
+            DB.DataBase db = new DB.DataBase("localhost", "pet_control", "root");
+            string petID = db.executeQuery($"SELECT Id FROM mascota WHERE Nombre = '{petName}' AND Fk_dueno = '{user.Id}'");
+            string appointmentID = db.executeQuery($"SELECT Id FROM cita WHERE Codigo = '{codeOfDate}'");
+            db.executeInsert($"UPDATE mascota SET Fk_cita = {appointmentID} WHERE Id = {petID}");
         }
 
         private void fillPetsList()
