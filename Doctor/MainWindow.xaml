@@ -34,7 +34,7 @@
     
     <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="#FF622BC3">
-            <TextBlock Text="Veterinaria trunca" HorizontalAlignment="Center" FontSize="33"/>
+            <TextBlock Text="Veterinaria " HorizontalAlignment="Center" FontSize="33"/>
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="Christian Ochoa" VerticalAlignment="Center" FontSize="18"/>
                 <materialDesign:PopupBox Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">

@@ -26,12 +26,12 @@ namespace Doctor
         SerialPort arduinoPort; 
         public MainWindow()
         {
-            //InicializarPantalla();
-            InitializeComponent();
             
+            InitializeComponent();
+            //initializePort();
         }
 
-        void InicializarPantalla()
+        void initializePort()
         {
             arduinoPort = new SerialPort
             {
@@ -44,6 +44,7 @@ namespace Doctor
 
         private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if(arduinoPort.IsOpen)
             arduinoPort.Close();
         }
 
