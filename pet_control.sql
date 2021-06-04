@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2021 a las 08:10:36
+-- Tiempo de generación: 04-06-2021 a las 04:46:23
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.11
 
@@ -33,15 +33,17 @@ CREATE TABLE `cita` (
   `Hora` time NOT NULL,
   `Codigo` varchar(100) NOT NULL,
   `Fk_doctor` int(11) NOT NULL,
-  `Fk_Mascota` int(11) NOT NULL
+  `Fk_Mascota` int(11) NOT NULL,
+  `Motivo` varchar(255) NOT NULL,
+  `Notas` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cita`
 --
 
-INSERT INTO `cita` (`Id`, `Fecha`, `Hora`, `Codigo`, `Fk_doctor`, `Fk_Mascota`) VALUES
-(1, '2021-06-13', '15:30:00', 'CT0001', 2, 1);
+INSERT INTO `cita` (`Id`, `Fecha`, `Hora`, `Codigo`, `Fk_doctor`, `Fk_Mascota`, `Motivo`, `Notas`) VALUES
+(1, '2021-06-13', '15:30:00', 'CT0001', 2, 1, 'Tratamiento', 'Requiero factura');
 
 -- --------------------------------------------------------
 
@@ -91,7 +93,9 @@ CREATE TABLE `doctor` (
 INSERT INTO `doctor` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tipo`) VALUES
 (1, 'Mario', 'Villalpando Montoya', 'mario@veterinaria.com', '123', 1),
 (2, 'Juan Pablo', 'Rodríguez Gutíerrez', 'nito@veterinaria.com', '123', 1),
-(3, 'Christian', 'Ochoa Hernández', 'chris@veterinaria.com', '123', 1);
+(3, 'Christian', 'Ochoa Hernández', 'chris@veterinaria.com', '123', 1),
+(4, 'Adriana', 'Espinosa López', 'adriana@veterinaria.com', '123', 1),
+(5, 'Luis', 'García Montoya', 'Luis@veterinaria.com', '123', 1);
 
 -- --------------------------------------------------------
 
@@ -135,13 +139,8 @@ CREATE TABLE `mascota` (
 
 INSERT INTO `mascota` (`Id`, `Nombre`, `Sexo`, `Edad`, `Fk_tipo`, `Fk_dueno`, `Fk_cita`, `Fk_receta`) VALUES
 (1, 'Bruno', 'Macho', 8, 1, 18, 1, NULL),
-(2, 'Marcelo', 'Macho', 5, 2, 19, NULL, NULL),
-(3, 'Teodoro', 'Macho', 5, 1, 18, NULL, NULL),
-(4, 'Firulais', 'Macho', 7, 1, 18, NULL, NULL),
-(5, 'Zicza', 'Hembra', 5, 1, 18, NULL, NULL),
-(6, 'Gumball', 'Macho', 2, 5, 1, NULL, NULL),
-(7, 'Snowball', 'Macho', 7, 2, 1, NULL, NULL),
-(8, 'Tortuga', 'Hembra', 15, 4, 1, NULL, NULL);
+(2, 'Patrick', 'Macho', 2, 1, 18, NULL, NULL),
+(20, 'Zicza', 'Hembra', 6, 1, 20, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -271,7 +270,7 @@ ALTER TABLE `typeuser`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
@@ -283,7 +282,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `emergencia`
@@ -295,7 +294,7 @@ ALTER TABLE `emergencia`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `receta`
