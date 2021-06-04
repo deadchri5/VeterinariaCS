@@ -49,6 +49,60 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Image Source="./res/images/collie.png"
+               Grid.Column="1"
+               Grid.ColumnSpan="2"
+               Grid.Row="0"
+               Grid.RowSpan="2"
+               Margin="30"/>
+
+        <StackPanel Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="3"
+                    Margin="15">
+
+            <StackPanel Margin="30"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+
+                <TextBlock  x:Name="InitialMsg"
+                            Text="{Binding}"
+                            FontSize="30"
+                            TextAlignment="Center"
+                            Margin="15"
+                            FontFamily="Arial"/>
+
+                <TextBlock Text="¿Que deseas hacer?"
+                           FontSize="25"
+                           TextAlignment="Left"
+                           Margin="10"
+                           FontFamily="Arial"/>
+
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="buttonAction_Click"
+                        Content="Agendar cita." 
+                        HorizontalAlignment="Left"/>
+
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="buttonAction_Click"
+                        Content="Registrar mascota." 
+                        HorizontalAlignment="Left"/>
+
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="buttonAction_Click"
+                        Content="Ver citas pendientes." 
+                        HorizontalAlignment="Left"/>
+
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="buttonAction_Click"
+                        Content="Ver datos de mi cuenta." 
+                        HorizontalAlignment="Left"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
         <Grid Grid.Column="0"
               Grid.Row="0"
               Grid.RowSpan="2">

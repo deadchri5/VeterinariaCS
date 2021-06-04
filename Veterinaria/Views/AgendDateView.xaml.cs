@@ -29,7 +29,16 @@ namespace Veterinaria.Views
 
         private void agregarCita(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Nito was here");
+            if (ComboboxReason.SelectedItem != null && ComboBoxPet.SelectedItem != null
+                && ComboBoxDoctor.SelectedItem != null)
+            {
+                ((dynamic)DataContext).reason = ComboboxReason.SelectedItem.ToString();
+                ((dynamic)DataContext).petName = ComboBoxPet.SelectedItem.ToString();
+                ((dynamic)DataContext).doctor = ComboBoxDoctor.SelectedItem.ToString();
+            }
+            else
+                MessageBox.Show("Tienes que llenar todos los campos obligatiorios para agendar una cita",
+                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

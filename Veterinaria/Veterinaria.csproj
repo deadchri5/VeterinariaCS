@@ -176,6 +176,7 @@
     <Resource Include="res\images\mascotas.png" />
     <Resource Include="res\gifs\animated-dog-gif-12.gif" />
     <Resource Include="res\images\golden-min.jpg" />
+    <Resource Include="res\images\collie.png" />
     <Content Include="res\images\vet.jpg" />
   </ItemGroup>
   <ItemGroup>

@@ -23,10 +23,21 @@ namespace Veterinaria
     public partial class MainWindow : Window
     {
 
+        public string welcomeMsj { get; set; } = "Bienvenido usuario!";
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new EditUserDataModel();
+            getUserData();
+            InitialMsg.DataContext = welcomeMsj;
+        }
+
+        private void getUserData()
+        {
+            ReadData rd = new ReadData();
+            User user = new User();
+            user = rd.getJSON();
+            welcomeMsj = $"¡Hola {user.Name}!";
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,6 +57,26 @@ namespace Veterinaria
                     DataContext = new EditUserDataModel();
                     break;
                 default:
+                    break;
+            }
+        }
+
+        private void buttonAction_Click(object sender, RoutedEventArgs e)
+        {
+            string action = ((Button)sender).Content.ToString();
+            switch (action)
+            {
+                case "Agendar cita.":
+                    DataContext = new AgendDateModel();
+                    break;
+                case "Registrar mascota.":
+                    DataContext = new PetRegisterModel();
+                    break;
+                case "Ver citas pendientes.":
+                    DataContext = new ViewDatesModel();
+                    break;
+                case "Ver datos de mi cuenta.":
+                    DataContext = new EditUserDataModel();
                     break;
             }
         }

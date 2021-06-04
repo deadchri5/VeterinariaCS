@@ -56,7 +56,7 @@ namespace Veterinaria.Views
             string password = TextBoxPassword.Password;
             DataBase db = new DataBase("localhost", "pet_control", "root");
             string DBpassword = db.executeQuery($"SELECT Password from Cliente WHERE Email='{email}'").Trim();
-            await Task.Delay(1500);
+            await Task.Delay(600);
             if (password.Equals(DBpassword) && password.Length > 0)
             {
                 CanvasLoading.Visibility = Visibility.Hidden;

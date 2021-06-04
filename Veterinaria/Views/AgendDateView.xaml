@@ -10,17 +10,16 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="../res/images/golden-min.jpg"/>
+            <ImageBrush ImageSource="../res/images/SweetMorning.jpg"/>
         </Grid.Background>
         <DockPanel VerticalAlignment="Center">
             <StackPanel>
                 <TextBlock Text="Agenda una cita" 
                            HorizontalAlignment="Center"
                            Foreground="White"
-                           Background="Black"
                            Padding="10"
                            Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Margin="10"/>
+                           Margin="10" FontSize="20"/>
                 <materialDesign:Card
                         Opacity="0.89"
                         Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
@@ -49,7 +48,7 @@
                                 <DatePicker x:Name="DatePickerAppointment"
                                             FontSize="15"
                                             materialDesign:HintAssist.Hint="Fecha"
-                                            materialDesign:CalendarAssist.IsHeaderVisible="False"
+                                            materialDesign:CalendarAssist.IsHeaderVisible="true"
                                             SelectedDate="{Binding date}">
                                 </DatePicker>
                             </StackPanel>
@@ -65,7 +64,7 @@
                                 <materialDesign:TimePicker  x:Name="Hour"
                                                             materialDesign:HintAssist.Hint="Hora"
                                                             FontSize="15"
-                                                            Is24Hours="False"
+                                                            Is24Hours="True"
                                                             SelectedTime="{Binding hour}"
                                                             />
                             </StackPanel>
@@ -77,9 +76,10 @@
                                 <TextBlock Text="Motivo de cita"
                                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                            Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
-                                <ComboBox materialDesign:HintAssist.Hint="Selecciona"
-                                          FontSize="15" 
-                                          ItemsSource="{Binding reasonOfAppointment}">
+                                <ComboBox   x:Name="ComboboxReason"
+                                            materialDesign:HintAssist.Hint="Selecciona"
+                                            FontSize="15" 
+                                            ItemsSource="{Binding reasonOfAppointment}">
                                 </ComboBox>
                             </StackPanel>
                             
@@ -97,9 +97,10 @@
                                            FontSize="15"
                                            Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                            Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
-                                <ComboBox materialDesign:HintAssist.Hint="Seleccionar"
-                                          FontSize="15"
-                                          ItemsSource="{Binding petsList}">
+                                <ComboBox   x:Name="ComboBoxPet"
+                                            materialDesign:HintAssist.Hint="Seleccionar"
+                                            FontSize="15"
+                                            ItemsSource="{Binding petsList}">
                                 </ComboBox>
                             </StackPanel>
 
@@ -113,6 +114,7 @@
                                            Foreground="{DynamicResource PrimaryHueDarkBrush}"/>
                                 <ComboBox materialDesign:HintAssist.Hint="Seleccionar"
                                           FontSize="15"
+                                          x:Name="ComboBoxDoctor"
                                           ItemsSource="{Binding veterinariesList}">
                                 </ComboBox>
                             </StackPanel>
@@ -134,7 +136,7 @@
                                             SpellCheck.IsEnabled="True"
                                             materialDesign:HintAssist.Hint="Información sobre la cita"
                                             Height="40"
-                                            Text="" />
+                                            Text="{Binding note}" />
                             </StackPanel>
 
                             <StackPanel x:Name="ButtonAcept"
