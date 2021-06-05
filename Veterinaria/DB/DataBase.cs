@@ -65,7 +65,7 @@ namespace Veterinaria.DB
                     data += reader.GetString(0) + "\n";
                 }
                 if (data != null)
-                    MessageBox.Show(data);
+                    //MessageBox.Show(data);
                 CloseConnection(connectionDB);
             }
             catch (MySqlException e) 

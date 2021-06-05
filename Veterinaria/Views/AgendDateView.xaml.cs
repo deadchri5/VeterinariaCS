@@ -21,24 +21,59 @@ namespace Veterinaria.Views
     /// </summary>
     public partial class AgendDateView : UserControl
     {
+
+        public string name { get; set; }
+        public string date { get; set; }
+        public string hour { get; set; }
+        public string reason { get; set; }
+        public string doctor { get; set; }
+
         public AgendDateView()
         {
             DataContext = new AgendDateModel();
             InitializeComponent();
         }
-
         private void agregarCita(object sender, RoutedEventArgs e)
         {
-            if (ComboboxReason.SelectedItem != null && ComboBoxPet.SelectedItem != null
-                && ComboBoxDoctor.SelectedItem != null)
-            {
-                ((dynamic)DataContext).reason = ComboboxReason.SelectedItem.ToString();
-                ((dynamic)DataContext).petName = ComboBoxPet.SelectedItem.ToString();
-                ((dynamic)DataContext).doctor = ComboBoxDoctor.SelectedItem.ToString();
-            }
-            else
-                MessageBox.Show("Tienes que llenar todos los campos obligatiorios para agendar una cita",
-                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            name = $"Mascota: {ComboBoxPet.Text}";
+            date = $"Fecha: {DatePickerAppointment.Text}";
+            hour = $"Hora: {Hour.Text}";
+            doctor = $"Veterinario: {ComboBoxDoctor.Text}";
+            reason = $"Razón: {ComboboxReason.Text}";
+
+            //Set canvas data context 
+            CanvasPet.DataContext = name;
+            CanvasReason.DataContext = reason;
+            CanvasDate.DataContext = date;
+            CanvasHour.DataContext = hour;
+            CanvasVeterinary.DataContext = doctor;
+
+            ((dynamic)DataContext).reason = ComboboxReason.Text;
+            ((dynamic)DataContext).petName = ComboBoxPet.Text;
+            ((dynamic)DataContext).doctor = ComboBoxDoctor.Text;
+            ((dynamic)DataContext).petName = ComboBoxPet.Text;
+            showCanvas();
+        }
+
+        private async void showCanvas()
+        {
+            await Task.Delay(300);
+            bool success = ((dynamic)DataContext).success;
+            bool error = ((dynamic)DataContext).error;
+            if (success)
+                CanvasSuccess.Visibility = Visibility.Visible;
+            if (error)
+                CanvasError.Visibility = Visibility.Visible;
+        }
+
+        private void CloseSuccesCanvas_Click(object sender, RoutedEventArgs e)
+        {
+            CanvasSuccess.Visibility = Visibility.Hidden;
+        }
+
+        private void CloseErrorCanvas_Click(object sender, RoutedEventArgs e)
+        {
+            CanvasError.Visibility = Visibility.Hidden;
         }
     }
 }

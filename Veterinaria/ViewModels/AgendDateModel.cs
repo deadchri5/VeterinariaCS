@@ -30,6 +30,8 @@ namespace Veterinaria.ViewModels
         public Models.User user;
         public GenericCommand genericCommand { get; private set; }
         string codeOfDate;
+        public bool success = false;
+        public bool error = false;
 
         public AgendDateModel()
         {
@@ -41,12 +43,14 @@ namespace Veterinaria.ViewModels
 
         private void generateDate()
         {
+            success = false;
+            error = false;
             if (date != null && hour != null && reason != null
-                          && petName != null && doctor != null)
+                && petName != null && doctor != null && !doctor.Equals(""))
             {
                 string _date = date.ToString("yyyy-MM-dd");
                 string _hour = (hour.Remove(0, hour.Length - 11).Remove(8)).Trim();
-                string doctorID = doctor.Remove(1, doctor.Length-1);
+                string doctorID = doctor.Remove(1, doctor.Length - 1);
                 Guid guid = Guid.NewGuid();
                 string str = guid.ToString();
                 codeOfDate = str.Remove(8, str.Length - 8);
@@ -54,19 +58,25 @@ namespace Veterinaria.ViewModels
                 string petID = db.executeQuery($"SELECT Id FROM mascota WHERE Nombre = '{petName}' AND Fk_dueno = '{user.Id}'");
                 if (petID != null)
                 {
+                    success = true;
                     if (note != null)
                     {
                         db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo, Notas)" +
                                     $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}', '{note}')");
                         setAppoinmentInPetTable();
                     }
-                    else {
+                    else
+                    {
                         db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo)" +
                                     $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}')");
                         setAppoinmentInPetTable();
                     }
                 }
+                else
+                    error = true;
             }
+            else
+                error = true;
         }
 
         private async void setAppoinmentInPetTable()
