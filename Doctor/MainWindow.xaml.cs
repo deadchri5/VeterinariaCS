@@ -33,37 +33,18 @@ namespace Doctor
 
         void InicializarPantalla()
         {
-            arduinoPort = new SerialPort
-            {
-                //BaudRate = 9600,
-                //PortName = "COM3",            
-            };
-            arduinoPort.Open();
-            arduinoPort.Write("Bienvenido");
+         
         }
 
-        private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //arduinoPort.Close();
-        }
 
-        private void close_Click(object sender, RoutedEventArgs e)
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            open.Visibility = Visibility.Visible;
-            close.Visibility = Visibility.Collapsed;
-        }
-
-        private void open_Click(object sender, RoutedEventArgs e)
-        {
-            open.Visibility = Visibility.Collapsed;
-            close.Visibility = Visibility.Visible;
+            DragMove(); 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Pages.Login login = new Pages.Login();
-            login.Owner = this;
-            login.Show();
+            Application.Current.Shutdown();
         }
     }
 }
