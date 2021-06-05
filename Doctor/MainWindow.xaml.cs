@@ -23,7 +23,7 @@ namespace Doctor
   
     public partial class MainWindow : Window
     {
-        SerialPort arduinoPort; 
+         
         public MainWindow()
         {
             //InicializarPantalla();
@@ -45,6 +45,12 @@ namespace Doctor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Regis reg = new Properties.Regis();
+            reg.Show();
         }
     }
 }
