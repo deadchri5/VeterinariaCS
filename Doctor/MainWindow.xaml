@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="600" Width="1080" Closing="windowClosing" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White">
+        mc:Ignorable="d" Height="600" Width="1080" Closing="windowClosing" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  Foreground="White">
 
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -30,8 +30,9 @@
             <BeginStoryboard Storyboard="{StaticResource Menuclose}"/>
         </EventTrigger>
     </Window.Triggers>
-    
-    
+
+ 
+
     <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="#FF622BC3">
             <TextBlock Text="Veterinaria " HorizontalAlignment="Center" FontSize="33"/>
@@ -43,7 +44,7 @@
                     <Button Content="Configuraciones"/>
                     <Button Content="Ayuda" />
                         <Separator/>
-                        <Button Content="Salir" />
+                        <Button Content="Salir" Click="Button_Click"/>
                     </StackPanel>
                     </materialDesign:PopupBox>
             </StackPanel>
@@ -58,7 +59,7 @@
                         <materialDesign:PackIcon Foreground="#FF622BC3" Kind="Menu" Width="25" Height="25"/>
                     </Button>
                 </Grid>
-                <ListView Foreground="#FF622BC3">
+                <ListView Foreground="#FF622BC3" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListViewItem Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CalendarRange" Width="25" Height="25" VerticalAlignment="Center" Margin="10"/>

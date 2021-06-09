@@ -45,7 +45,9 @@ namespace Doctor
         private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(arduinoPort.IsOpen)
-            arduinoPort.Close();
+            {
+                arduinoPort.Close();
+            }
         }
 
         private void close_Click(object sender, RoutedEventArgs e)
@@ -58,6 +60,13 @@ namespace Doctor
         {
             open.Visibility = Visibility.Collapsed;
             close.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Pages.Login login = new Pages.Login();
+            login.Owner = this;
+            login.Show();
         }
     }
 }
