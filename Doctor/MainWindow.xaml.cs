@@ -23,17 +23,33 @@ namespace Doctor
   
     public partial class MainWindow : Window
     {
+        SerialPort arduinoPort;
          
         public MainWindow()
         {
-            //InicializarPantalla();
-            InitializeComponent();
             
+            InitializeComponent();
+            //initializePort();
         }
 
-        void InicializarPantalla()
+
+        void initializePort()
         {
-         
+            arduinoPort = new SerialPort
+            {
+                BaudRate = 9600,
+                PortName = "COM3",            
+            };
+            arduinoPort.Open();
+            arduinoPort.Write("Bienvenido");
+        }
+
+        private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(arduinoPort.IsOpen)
+            {
+                arduinoPort.Close();
+            }
         }
 
 
@@ -51,6 +67,7 @@ namespace Doctor
         {
             Properties.Regis reg = new Properties.Regis();
             reg.Show();
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

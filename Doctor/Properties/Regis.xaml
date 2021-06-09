@@ -38,16 +38,20 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <StackPanel Orientation="Vertical"  Margin="40 20 0 0">
+            <StackPanel Orientation="Vertical"  Margin="40 0 0 0">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="Account" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
                     <TextBox x:Name="user" Width="300" materialDesign:HintAssist.Hint="Usuario" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <materialDesign:PackIcon Kind="Email" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
+                    <TextBox x:Name="email" Width="300" materialDesign:HintAssist.Hint="E-mail" materialDesign:HintAssist.IsFloating="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
                     <PasswordBox x:Name="pass" Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
                     <PasswordBox x:Name="ppass" Width="300" materialDesign:HintAssist.Hint="Confirmar Contraseña" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
