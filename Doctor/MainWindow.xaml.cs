@@ -52,5 +52,12 @@ namespace Doctor
             Properties.Regis reg = new Properties.Regis();
             reg.Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Properties.Dashboard dash = new Properties.Dashboard();
+            dash.Show();
+            this.Close();
+        }
     }
 }
