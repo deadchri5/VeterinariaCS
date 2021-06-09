@@ -23,12 +23,18 @@ namespace Doctor
   
     public partial class MainWindow : Window
     {
-        SerialPort arduinoPort; 
+        SerialPort arduinoPort;
+         
         public MainWindow()
         {
             
             InitializeComponent();
             //initializePort();
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
         }
 
         void initializePort()
@@ -50,23 +56,21 @@ namespace Doctor
             }
         }
 
-        private void close_Click(object sender, RoutedEventArgs e)
-        {
-            open.Visibility = Visibility.Visible;
-            close.Visibility = Visibility.Collapsed;
-        }
 
-        private void open_Click(object sender, RoutedEventArgs e)
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            open.Visibility = Visibility.Collapsed;
-            close.Visibility = Visibility.Visible;
+            DragMove(); 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Pages.Login login = new Pages.Login();
-            login.Owner = this;
-            login.Show();
+            Application.Current.Shutdown();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Regis reg = new Properties.Regis();
+            reg.Show();
         }
     }
 }
