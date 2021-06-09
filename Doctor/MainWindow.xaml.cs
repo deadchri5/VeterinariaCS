@@ -32,10 +32,6 @@ namespace Doctor
             //initializePort();
         }
 
-        private void InitializeComponent()
-        {
-            throw new NotImplementedException();
-        }
 
         void initializePort()
         {
