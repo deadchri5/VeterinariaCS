@@ -11,8 +11,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Title="PET-Control" Width="425" Height="470" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"> 
-    
+        mc:Ignorable="d" Title="PET-Control" Width="425" Height="470" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+
 
 
     <Grid>
@@ -61,7 +61,7 @@
                 </materialDesign:Card>
             </StackPanel>
         </Grid>
-      
+
 
     </Grid>
 </Window>
