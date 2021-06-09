@@ -80,7 +80,7 @@ namespace Veterinaria.ViewModels
             confirmPassword = user.Password;
         }
 
-        private void showUserPets()
+        public void showUserPets()
         {
             DataBase db = new DataBase("localhost", "pet_control", "root");
             pets = db.exectueAdvancedQuery($"SELECT Nombre FROM mascota WHERE Fk_dueno = {id}");

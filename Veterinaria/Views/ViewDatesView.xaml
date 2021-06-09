@@ -3,10 +3,88 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Veterinaria.Views"
+             xmlns:local="clr-namespace:Veterinaria.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Bisque">
-            
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="WhiteSmoke"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="250"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas x:Name="CanvasNoPets"
+                Grid.Column="1"
+                Grid.ColumnSpan="1"
+                Grid.Row="1"
+                Grid.RowSpan="3"
+                Panel.ZIndex="10"
+                Visibility="Hidden">
+
+
+            <materialDesign:Card    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center" Canvas.Left="16" Canvas.Top="111">
+                <StackPanel Margin="15">
+                    <Image Source="../res/icons/calendar.png"
+                       Width="120"
+                       Height="120"
+                       Margin="5"/>
+                    <TextBlock  Text="No tienes citas agendadas."
+                            FontSize="20"
+                            FontFamily="Arial"
+                            TextAlignment="Center"/>
+                </StackPanel>
+            </materialDesign:Card>
+
+        </Canvas>
+
+        <TextBlock Text="Citas de tus mascotas"
+                   FontSize="23"
+                   TextAlignment="Center"
+                   Margin="5"
+                   VerticalAlignment="Center"
+                   Grid.Row="0"
+                   Grid.RowSpan="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"/>
+
+        <StackPanel Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+
+            <DataGrid   x:Name="grdEmployee" 
+                        CanUserSortColumns="False"
+                        CanUserAddRows="False"
+                        AutoGenerateColumns="false"
+                        Padding="80 30"
+                        FontSize="13"
+                        FontFamily="Arial"
+                        Height="380">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Fecha" Width="93" Binding="{Binding Fecha}"/>
+                    <DataGridTextColumn Header="Hora" Binding="{Binding Hora}"/>
+                    <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}"/>
+                    <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor}"/>
+                    <DataGridTextColumn Header="Mascota" Binding="{Binding Mascota}"/>
+                    <DataGridTextColumn Header="Motivo" Binding="{Binding Motivo}"/>
+                </DataGrid.Columns>
+                
+
+            </DataGrid>
+
+        </StackPanel>
+
     </Grid>
 </UserControl>

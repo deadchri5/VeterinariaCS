@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +19,7 @@ namespace Veterinaria.DB
         private string data;
 
         private int count;
-        private List<string> list = new List<string>(); 
+        private List<string> list = new List<string>();
 
         public DataBase(string server, string bd, string user)
         {
@@ -66,9 +68,9 @@ namespace Veterinaria.DB
                 }
                 if (data != null)
                     //MessageBox.Show(data);
-                CloseConnection(connectionDB);
+                    CloseConnection(connectionDB);
             }
-            catch (MySqlException e) 
+            catch (MySqlException e)
             {
                 MessageBox.Show(e.Message, "Error en consulta.", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -97,7 +99,7 @@ namespace Veterinaria.DB
             {
                 MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -138,5 +140,28 @@ namespace Veterinaria.DB
             return list;
         }
 
+        public DataTable fillQuery(string query)
+        {
+            DataTable dt = new DataTable("Cita");
+            MySqlConnection connectionDB = new MySqlConnection(connectionString);
+            OpenConnection(connectionDB);
+            try
+            {
+                MySqlCommand command = new MySqlCommand(query);
+                command.Connection = connectionDB;
+                MySqlDataAdapter sda = new MySqlDataAdapter(command);
+                sda.Fill(dt);
+                CloseConnection(connectionDB);
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "SQL error.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return dt;
+        }
     }
 }

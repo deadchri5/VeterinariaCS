@@ -63,13 +63,11 @@ namespace Veterinaria.ViewModels
                     {
                         db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo, Notas)" +
                                     $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}', '{note}')");
-                        setAppoinmentInPetTable();
                     }
                     else
                     {
                         db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo)" +
                                     $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}')");
-                        setAppoinmentInPetTable();
                     }
                 }
                 else
@@ -79,6 +77,7 @@ namespace Veterinaria.ViewModels
                 error = true;
         }
 
+        /*
         private async void setAppoinmentInPetTable()
         {
             await Task.Delay(100);
@@ -87,6 +86,7 @@ namespace Veterinaria.ViewModels
             string appointmentID = db.executeQuery($"SELECT Id FROM cita WHERE Codigo = '{codeOfDate}'");
             db.executeInsert($"UPDATE mascota SET Fk_cita = {appointmentID} WHERE Id = {petID}");
         }
+        */
 
         private void fillPetsList()
         {

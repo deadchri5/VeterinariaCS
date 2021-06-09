@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Veterinaria.ViewModels;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Veterinaria.Views
 {
@@ -20,9 +24,25 @@ namespace Veterinaria.Views
     /// </summary>
     public partial class ViewDatesView : UserControl
     {
+
+        public bool canvas { get; set; }
+
         public ViewDatesView()
         {
+            DataContext = new ViewDatesModel();
             InitializeComponent();
+            FillDataGrid();
+        }
+
+        private void FillDataGrid()
+        {
+            grdEmployee.ItemsSource = ((dynamic)DataContext).dataTable.DefaultView;
+            canvas = ((dynamic)DataContext).UserhavePets;
+            if (!canvas)
+            {
+                CanvasNoPets.Visibility = Visibility.Visible;
+                grdEmployee.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

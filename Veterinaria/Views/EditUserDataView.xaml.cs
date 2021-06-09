@@ -27,15 +27,16 @@ namespace Veterinaria.Views
 
         public EditUserDataView()
         {
-            InitializeComponent();
-            checkItemsControl();
             userDataModel = new EditUserDataModel();
             DataContext = userDataModel;
+            InitializeComponent();
+            checkItemsControl();
         }
 
         private void checkItemsControl()
         {
-            int pets = itemControlPets.Items.Count;
+            //int pets = itemControlPets.Items.Count;
+            int pets = ((dynamic)DataContext).pets.Count;
             if (pets <= 0)
             {
                 itemControlPets.Visibility = Visibility.Hidden;
@@ -46,6 +47,19 @@ namespace Veterinaria.Views
                 itemControlPets.Visibility = Visibility.Visible;
                 CanvasPetsInfo.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void DeletePet_Click(object sender, RoutedEventArgs e)
+        {
+            string pet = ((Button)sender).Uid;
+            int ownerID = ((dynamic)DataContext).id;
+            DB.DataBase db = new DB.DataBase("localhost", "pet_control", "root");
+            string petID = db.executeQuery($"SELECT Id from mascota WHERE Nombre = '{pet}' AND Fk_dueno = {ownerID}");
+            db.executeInsert($"DELETE FROM cita WHERE Fk_mascota = {petID}");
+            db.executeInsert($"DELETE FROM mascota WHERE Id = {petID}");
+            ((dynamic)DataContext).showUserPets();
+            itemControlPets.ItemsSource = ((dynamic)DataContext).pets;
+            checkItemsControl();
         }
 
         private void Password_Changed(object sender, RoutedEventArgs e)
