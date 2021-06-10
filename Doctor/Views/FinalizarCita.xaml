@@ -61,9 +61,12 @@
 
         </DockPanel>
 
-        <DockPanel Grid.Column="2"
+        <DockPanel  
+                    x:Name="dateData"
+                    Grid.Column="2"
                     Grid.ColumnSpan="3"
-                    Background="White"                  
+                    Background="White"  
+                    Visibility="Hidden"
                     >
             <StackPanel VerticalAlignment="Center">
 
@@ -216,6 +219,35 @@
 
             </StackPanel>
 
+        </DockPanel>
+
+        <DockPanel  
+                    x:Name="withoutDateData"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="3"
+                    Background="White"  
+                    Visibility="Visible"
+                    >
+            <StackPanel VerticalAlignment="Center"
+                        Margin="40">
+                <TextBlock
+                    FontFamily="Arial"
+                    TextAlignment="Center"
+                    FontSize="35"
+                    FontWeight="Bold"
+                    Foreground="Purple">
+                    Felicidades!
+                </TextBlock>
+                <Image 
+                    Source="../res/images/catHappy.png"
+                    Margin="40"></Image>
+                <TextBlock TextAlignment="Center"
+                           FontFamily="Arial"
+                           FontSize="20">
+                    Actualmente no tienes ninguna cita
+                </TextBlock>
+            </StackPanel>
+            
         </DockPanel>
     </Grid>
 </Page>
