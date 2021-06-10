@@ -23,5 +23,22 @@ namespace Doctor.Properties
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void CloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OpenMenu.Visibility = Visibility.Visible;
+            CloseMenu.Visibility = Visibility.Collapsed;
+        }
+
+        private void OpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OpenMenu.Visibility = Visibility.Collapsed;
+            CloseMenu.Visibility = Visibility.Visible;
+        }
     }
 }

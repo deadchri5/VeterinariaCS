@@ -11,8 +11,108 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor.Properties"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Title="PET-Control" Width="800" Height="470" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
+        mc:Ignorable="d" Title="PET-Control" Width="1080" Height="600" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Menuclose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="OpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Button.Click" SourceName="CloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource Menuclose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid Background="LightGray">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="Transparent">
+            <Grid>
+                <materialDesign:ColorZone Mode="PrimaryDark">
+                    <StackPanel HorizontalAlignment="Right">
+                        <Button Width="30" Height="30" materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="0" Click="Button_Click">
+                            <materialDesign:PackIcon Kind="WindowClose"/>
+                        </Button>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+            </Grid>
+        </Border>
+
+
+        <Grid Grid.Row="1">
+            <Grid Background="#673ab7">
+                <TextBlock Text="Pet-Control" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="30" Padding="30 50 0 10" Foreground="White"/>
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Christan Ochoa" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+                    <materialDesign:PopupBox HorizontalAlignment="Right" Margin="5" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Foreground="White">
+                        <StackPanel Width="150">
+                            <Button Content="Cuenta"/>
+                            <Button Content="Opciones"/>
+                            <Button Content="Salir"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Grid.RowSpan="3">
+            <materialDesign:ColorZone Mode="PrimaryDark">
+                <StackPanel>
+                    <Grid Height="100" Background="White">
+                        <Button x:Name="CloseMenu"  Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" Visibility="Collapsed" Click="CloseMenu_Click">
+                            <materialDesign:PackIcon Kind="ArrowLeft"/>
+                        </Button>
+                        <Button x:Name="OpenMenu" Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" Click="OpenMenu_Click">
+                            <materialDesign:PackIcon Kind="Menu"/>
+                        </Button>
+                    </Grid>
+                    <ListView>
+                        <ListViewItem Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CalendarRange" Height="25" Width="25" Foreground="White" VerticalAlignment="Center" Margin="10"/>
+                                <TextBlock Text="Citas" VerticalAlignment="Center" Margin="20 10" Foreground="White" FontSize="20"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Alert" Height="25" Width="25" Foreground="White" VerticalAlignment="Center" Margin="10"/>
+                                <TextBlock Text="Emergencias" VerticalAlignment="Center" Margin="20 10" Foreground="White" FontSize="20"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="AccountCircle" Height="25" Width="25" Foreground="White" VerticalAlignment="Center" Margin="10"/>
+                                <TextBlock Text="Cuenta" VerticalAlignment="Center" Margin="20 10" Foreground="White" FontSize="20"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="320">
+
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </Grid>
+
+
     </Grid>
 </Window>

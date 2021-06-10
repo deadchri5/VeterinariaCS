@@ -1,0 +1,221 @@
+﻿<Page x:Class="Doctor.Views.FinalizarCita"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Doctor.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FinalizarCita">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+
+
+        </Grid.ColumnDefinitions>
+
+        <DockPanel 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Background="White">
+
+            <StackPanel
+                
+                 VerticalAlignment="Center"
+                 Margin="30"
+                >
+                <Border BorderBrush="Black"
+                        BorderThickness="1, 1, 10,0"
+                        CornerRadius="10,10,0,0"
+                    >
+                    <TextBlock x:Name="txtNumCitaTittle"
+                           FontSize="40"
+                           FontFamily="Arial"
+                           Margin="10"
+                           TextAlignment="Center"
+                           FontWeight="Bold"
+                           >Cita actual:</TextBlock>
+
+
+                </Border>
+                <Border BorderBrush="Black"
+                        BorderThickness="1 , 1 , 10, 10"
+                        CornerRadius="0, 0,15, 15"
+                    >
+                    <TextBlock x:Name="txtNumCita"
+                           TextWrapping="Wrap"
+                           FontSize="200"
+                           Margin="10"
+                           FontFamily="Arial"
+                           Foreground="Red"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           >00</TextBlock>
+                </Border>
+            </StackPanel>
+
+        </DockPanel>
+
+        <DockPanel Grid.Column="2"
+                    Grid.ColumnSpan="3"
+                    Background="White"                  
+                    >
+            <StackPanel VerticalAlignment="Center">
+
+                <StackPanel Margin="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+
+                    <TextBlock TextAlignment="Center"
+                           FontSize="30"
+                           FontFamily="Arial"
+                           Margin="20"
+                           FontWeight="Bold"
+                           >
+                    Datos de la cita</TextBlock>
+
+                    <StackPanel Orientation="Horizontal"
+                            Margin="10">
+                        <StackPanel Margin="10"
+                                MaxWidth="425">
+
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Folio:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"> CT0000</TextBlock>
+                            </WrapPanel>
+
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Nombre del cliente:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"> Jose Alfredo Jimenez</TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Nombre de la mascota:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"> Firulais</TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Sexo:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"> Macho</TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Edad:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"> 8</TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Motivo:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"> Desparacitación</TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Notas:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"> Requiero factura</TextBlock>
+                            </WrapPanel>
+                            <TextBox Margin="10,30,10,10"
+                             materialDesign:HintAssist.Hint="Comentarios"
+                             TextWrapping="Wrap">
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Margin="10">
+
+
+
+                        </StackPanel>
+
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+
+                    <Button                        
+                        Margin="20,0">Saltar cita</Button>
+                    <Button Margin="20,0">Escribir receta</Button>
+                </StackPanel>
+
+            </StackPanel>
+
+        </DockPanel>
+    </Grid>
+</Page>
