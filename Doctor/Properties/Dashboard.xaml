@@ -80,7 +80,9 @@
                 <StackPanel>
                     <Grid Height="100" Background="White">
                         <Button x:Name="CloseMenu"  Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" Visibility="Collapsed" Click="CloseMenu_Click">
+
                             <materialDesign:PackIcon Kind="ArrowLeft"/>
+
                         </Button>
                         <Button x:Name="OpenMenu" Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" Click="OpenMenu_Click">
                             <materialDesign:PackIcon Kind="Menu"/>
