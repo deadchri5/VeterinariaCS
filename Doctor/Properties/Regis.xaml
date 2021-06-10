@@ -11,7 +11,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor.Properties"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Title="PET-Control" Width="425" Height="470" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" Title="PET-Control" Width="425" Height="525.2" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -32,7 +32,7 @@
         </Border>
 
         <Grid Grid.Row="1">
-            <materialDesign:ColorZone Mode="PrimaryMid">
+            <materialDesign:ColorZone Mode="PrimaryMid" Height="80" Margin="0,0,-0.2,0">
                 <TextBlock Text="Bienvenidos" FontSize="35" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="30 50 0 10"/>
             </materialDesign:ColorZone>
         </Grid>
@@ -41,22 +41,26 @@
             <StackPanel Orientation="Vertical"  Margin="40 0 0 0">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="Account" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
-                    <TextBox x:Name="user" Width="300" materialDesign:HintAssist.Hint="Usuario" materialDesign:HintAssist.IsFloating="True"/>
+                    <TextBox x:Name="TextBoxNombre" Width="300" materialDesign:HintAssist.Hint="Nombre" materialDesign:HintAssist.IsFloating="True"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <materialDesign:PackIcon Kind="Account" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
+                    <TextBox x:Name="TextBoxApellido" Width="300" materialDesign:HintAssist.Hint="Apellido" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <materialDesign:PackIcon Kind="Email" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
-                    <TextBox x:Name="email" Width="300" materialDesign:HintAssist.Hint="E-mail" materialDesign:HintAssist.IsFloating="True"/>
+                    <TextBox x:Name="TextBoxEmail" Width="300" materialDesign:HintAssist.Hint="E-mail" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
-                    <PasswordBox x:Name="pass" Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True"/>
+                    <PasswordBox x:Name="PasswordBoxPass" Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
-                    <PasswordBox x:Name="ppass" Width="300" materialDesign:HintAssist.Hint="Confirmar Contraseña" materialDesign:HintAssist.IsFloating="True"/>
+                    <PasswordBox x:Name="PasswordBoxConfirmPass" Width="300" materialDesign:HintAssist.Hint="Confirmar Contraseña" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
 
-                <Button Content="Guardar" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Width="80" HorizontalAlignment="Right" Margin="0 20 70 0"/>
+                <Button x:Name="Btn_Registrar" Content="Guardar" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Width="91" HorizontalAlignment="Right" Margin="0,20,69.8,0" Click="ButtonRegistrar_Click"/>
 
                 <materialDesign:Card Margin="0 10 10 10" Padding="15" materialDesign:ShadowAssist.ShadowDepth="Depth4">
                     <StackPanel Orientation="Horizontal">
@@ -65,7 +69,7 @@
                 </materialDesign:Card>
             </StackPanel>
         </Grid>
-        
+
 
 
     </Grid>

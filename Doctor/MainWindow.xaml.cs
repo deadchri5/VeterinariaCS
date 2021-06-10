@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
+using Doctor.DB;
 
 namespace Doctor
 {
@@ -23,12 +24,16 @@ namespace Doctor
   
     public partial class MainWindow : Window
     {
+
+        public string email { get; set; }
+        public string constrasena { get; set; }
         SerialPort arduinoPort;
          
         public MainWindow()
         {
             
             InitializeComponent();
+            DataContext = this;
             //initializePort();
         }
 
@@ -72,9 +77,26 @@ namespace Doctor
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Properties.Dashboard dash = new Properties.Dashboard();
-            dash.Show();
-            this.Close();
+            email = TextBoxEmail.Text;
+            constrasena = PasswordBoxContraseña.Password;
+            DataBase db = new DataBase("localhost", "pet_control", "root");
+            if (!email.Equals("") && !constrasena.Equals(""))
+            {
+                string ContrasenaDB = db.executeQuery($"SELECT Password from doctor WHERE Email='{email}'").Trim();
+                if (constrasena.Equals(ContrasenaDB))
+                {
+                    string nombreDoctor = db.executeQuery($"SELECT Nombre from doctor WHERE Email='{email}'").Trim();
+                    string apellidoDoctor = db.executeQuery($"SELECT Apellidos from doctor WHERE Email='{email}'").Trim();
+                    string idDoctor = db.executeQuery($"SELECT Id from doctor WHERE Email = '{email}'").Trim();
+                    int id = int.Parse(idDoctor);
+                    ReadData rd = new ReadData();
+                    rd.saveUserInJSON(id, email, nombreDoctor, apellidoDoctor, constrasena);
+                    MessageBox.Show($"Bienvendo al panel de control {nombreDoctor} {apellidoDoctor}", "Hola.");
+                    Properties.Dashboard dash = new Properties.Dashboard();
+                    dash.Show();
+                    this.Close();
+                }
+            }
         }
     }
 }

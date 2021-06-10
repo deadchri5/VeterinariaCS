@@ -62,7 +62,7 @@
             <Grid Background="#673ab7">
                 <TextBlock Text="Pet-Control" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="30" Padding="30 50 0 10" Foreground="White"/>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="Christan Ochoa" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+                    <TextBlock x:Name="TextBlockUserName" Text="{Binding}" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
                     <materialDesign:PopupBox HorizontalAlignment="Right" Margin="5" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Foreground="White">
                         <StackPanel Width="150">
                             <Button Content="Cuenta"/>
@@ -71,7 +71,10 @@
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </StackPanel>
+<<<<<<< HEAD
                 
+=======
+>>>>>>> 8004f00a52afc3af1cc1acf95c63a4db285f843f
             </Grid>
         </Grid>
 
@@ -80,7 +83,11 @@
                 <StackPanel>
                     <Grid Height="100" Background="White">
                         <Button x:Name="CloseMenu"  Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" Visibility="Collapsed" Click="CloseMenu_Click">
+<<<<<<< HEAD
                             <materialDesign:PackIcon Kind="ArrowLeft"/> 
+=======
+                            <materialDesign:PackIcon Kind="ArrowLeft"/>
+>>>>>>> 8004f00a52afc3af1cc1acf95c63a4db285f843f
                         </Button>
                         <Button x:Name="OpenMenu" Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" BorderBrush="{x:Null}" Click="OpenMenu_Click">
                             <materialDesign:PackIcon Kind="Menu"/>
@@ -106,13 +113,19 @@
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="320">
+<<<<<<< HEAD
                             
+=======
+>>>>>>> 8004f00a52afc3af1cc1acf95c63a4db285f843f
                         </ListViewItem>
                     </ListView>
                 </StackPanel>
             </materialDesign:ColorZone>
         </Grid>
+<<<<<<< HEAD
         
+=======
+>>>>>>> 8004f00a52afc3af1cc1acf95c63a4db285f843f
 
     </Grid>
 </Window>
