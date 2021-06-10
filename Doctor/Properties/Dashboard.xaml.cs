@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctor.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,15 @@ namespace Doctor.Properties
     /// </summary>
     public partial class Dashboard : Window
     {
+
+        string userName { get; set; }
+        User user {get; set;}
+
         public Dashboard()
         {
+            DataContext = this;
             InitializeComponent();
+            getUserData();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -39,6 +46,14 @@ namespace Doctor.Properties
         {
             OpenMenu.Visibility = Visibility.Collapsed;
             CloseMenu.Visibility = Visibility.Visible;
+        }
+
+        private void getUserData() 
+        {
+            ReadData rd = new ReadData();
+            user = rd.getJSON();
+            userName = $"{user.Name} {user.SureName}";
+            TextBlockUserName.DataContext = userName;
         }
     }
 }
