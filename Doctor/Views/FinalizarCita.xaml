@@ -47,7 +47,8 @@
                         BorderThickness="1 , 1 , 10, 10"
                         CornerRadius="0, 0,15, 15"
                     >
-                    <TextBlock x:Name="txtNumCita"
+                    <TextBlock 
+                           x:Name="txtNumCita"
                            TextWrapping="Wrap"
                            FontSize="200"
                            Margin="10"
@@ -55,7 +56,7 @@
                            Foreground="Red"
                            VerticalAlignment="Center"
                            TextAlignment="Center"
-                           Text="{Binding numCita}"
+                           Text="{Binding}"
                            ></TextBlock>
                 </Border>
             </StackPanel>
@@ -97,7 +98,8 @@
                                 FontWeight="Bold"
                                 >Folio:</TextBlock>
                                 <TextBlock
-                                Text="{Binding Folio}"
+                                x:Name="txtFolio"
+                                Text="{Binding}"
                                 Margin="5,0"
                                 TextWrapping="Wrap"
                                 TextAlignment="Left"
@@ -114,9 +116,10 @@
                                 FontWeight="Bold"
                                 >Nombre del cliente:</TextBlock>
                                 <TextBlock
+                                x:Name="txtCliente"
                                 Margin="5,0"
                                 TextWrapping="Wrap"
-                                Text="{Binding Cliente}"
+                                Text="{Binding}"
                                 TextAlignment="Left"
                                 FontSize="16"
                                 FontFamily="Arial"></TextBlock>
@@ -130,9 +133,10 @@
                                 FontWeight="Bold"
                                 >Nombre de la mascota:</TextBlock>
                                 <TextBlock
+                                x:Name="txtMascota"
                                 Margin="5,0"
                                 TextWrapping="Wrap"
-                                Text="{Binding Mascota}"
+                                Text="{Binding}"
                                 TextAlignment="Left"
                                 FontSize="16"
                                 FontFamily="Arial"></TextBlock>
@@ -146,9 +150,10 @@
                                 FontWeight="Bold"
                                 >Animal:</TextBlock>
                                 <TextBlock
+                                x:Name="txtAnimal"
                                 Margin="5,0"
                                 TextWrapping="Wrap"
-                                Text="{Binding Animal}"
+                                Text="{Binding}"
                                 TextAlignment="Left"
                                 FontSize="16"
                                 FontFamily="Arial"></TextBlock>
@@ -162,8 +167,9 @@
                                 FontWeight="Bold"
                                 >Sexo:</TextBlock>
                                 <TextBlock
+                                x:Name="txtSexo"
                                 Margin="5,0"
-                                Text="{Binding Sexo}"
+                                Text="{Binding}"
                                 TextWrapping="Wrap"
                                 TextAlignment="Left"
                                 FontSize="16"
@@ -178,8 +184,9 @@
                                 FontWeight="Bold"
                                 >Edad:</TextBlock>
                                 <TextBlock
+                                x:Name="txtAge"
                                 Margin="5,0"
-                                Text="{Binding Edad}"
+                                Text="{Binding}"
                                 TextWrapping="Wrap"
                                 TextAlignment="Left"
                                 FontSize="16"
@@ -194,9 +201,10 @@
                                 FontWeight="Bold"
                                 >Motivo:</TextBlock>
                                 <TextBlock
+                                x:Name="txtMotivo"
                                 Margin="5,0"
                                 TextWrapping="Wrap"
-                                Text="{Binding Motivo}"
+                                Text="{Binding}"
                                 TextAlignment="Left"
                                 FontSize="16"
                                 FontFamily="Arial"></TextBlock>
@@ -210,17 +218,14 @@
                                 FontWeight="Bold"
                                 >Notas:</TextBlock>
                                 <TextBlock
+                                x:Name="txtNotas"
                                 Margin="5,0"
                                 TextWrapping="Wrap"
-                                Text="{Binding Notas}"
+                                Text="{Binding}"
                                 TextAlignment="Left"
                                 FontSize="16"
                                 FontFamily="Arial"></TextBlock>
                             </WrapPanel>
-                            <TextBox Margin="10,30,10,10"
-                             materialDesign:HintAssist.Hint="Comentarios"
-                             TextWrapping="Wrap">
-                            </TextBox>
                         </StackPanel>
 
                         <StackPanel Margin="10">

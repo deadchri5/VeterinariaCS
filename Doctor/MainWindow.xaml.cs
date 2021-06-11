@@ -34,7 +34,7 @@ namespace Doctor
             
             InitializeComponent();
             DataContext = this;
-            //initializePort();
+            initializePort();
         }
 
 

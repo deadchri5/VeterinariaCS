@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ using System.Windows;
 namespace Doctor.Models.ViewsModels
 {
 
-    class FinalizarCitaModel : INotifyPropertyChanged
+    class FinalizarCitaModel 
     {
 
         public List<string> query { set; get; } = new List<string>();
@@ -29,18 +30,18 @@ namespace Doctor.Models.ViewsModels
         public string Animal { set; get; }
         public string Apellido { set; get; }
         public string numCita { set; get; }
+
         
         private DataBase db = new DB.DataBase("localhost", "pet_control", "root");
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public FinalizarCitaModel()
         {
-            getDate();
+            getDateAsync();
             //finalizarTareaCommand = new FinalizarTareaCommand(nextDate);            
         }
 
-        private void getDate()
+        private void getDateAsync()
         {           
             dataTable = db.fillQuery("SELECT cita.Codigo, cita.Motivo, cita.Notas, mascota.Nombre AS Mascota," +
                 " mascota.Sexo, mascota.Edad, typepet.Nombre AS Animal, cliente.Nombre AS Cliente, cliente.Apellidos AS Apellido, cita.Id " +
@@ -109,8 +110,7 @@ namespace Doctor.Models.ViewsModels
         public void nextDate()
         {
             db.executeInsert($"UPDATE cita SET Status = 1 WHERE Id = '{this.numCita}'"); 
-            getDate();
-            MessageBox.Show(this.Motivo);
+            getDateAsync();
         }
     }
 }
