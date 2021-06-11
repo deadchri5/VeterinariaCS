@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Doctor.DB;
+using Doctor.Models;
+using Doctor.Models.ViewsModels;
 
 namespace Doctor.Views
 {
@@ -20,9 +23,34 @@ namespace Doctor.Views
     /// </summary>
     public partial class FinalizarCita : Page
     {
+        FinalizarCitaModel finalizarCitaModel;
         public FinalizarCita()
         {
             InitializeComponent();
+            finalizarCitaModel = new FinalizarCitaModel();
+            DataContext = finalizarCitaModel;
+            checkNumberOfDates();                     
+        }
+
+        private void checkNumberOfDates()
+        {
+            if (finalizarCitaModel.doctorHaveDates)
+            {
+                dateData.Visibility = Visibility.Visible;
+                withoutDateData.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                withoutDateData.Visibility = Visibility.Visible;
+                dateData.Visibility = Visibility.Hidden;
+                txtNumCita.Text = "00";
+            }
+        }
+        private void btnSkipDate(object sender, RoutedEventArgs e)
+        {
+            finalizarCitaModel.nextDate();
+            checkNumberOfDates();
+            DataContext = finalizarCitaModel;
         }
     }
 }

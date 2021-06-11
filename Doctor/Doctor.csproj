@@ -43,7 +43,7 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.1.0.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.1.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-	 <Reference Include="MySql.Data, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 8.0.25\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
     </Reference>
@@ -70,8 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-	<Compile Include="DB\DataBase.cs" />
+    <Compile Include="DB\DataBase.cs" />
+    <Compile Include="Models\Commands\FinalizarTareaCommand.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ViewsModels\FinalizarCitaModel.cs" />
     <Compile Include="ReadData.cs" />
     <Compile Include="Views\FinalizarCita.xaml.cs">
       <DependentUpon>FinalizarCita.xaml</DependentUpon>
@@ -134,10 +136,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-    <ItemGroup>
-	<Resource Include="res\images\catHappy.png" />
+  <ItemGroup>
+    <Resource Include="res\images\catHappy.png" />
   </ItemGroup>
-  
   <ItemGroup>
     <Folder Include="sessionJSON\" />
   </ItemGroup>

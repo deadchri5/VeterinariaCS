@@ -55,7 +55,8 @@
                            Foreground="Red"
                            VerticalAlignment="Center"
                            TextAlignment="Center"
-                           >00</TextBlock>
+                           Text="{Binding numCita}"
+                           ></TextBlock>
                 </Border>
             </StackPanel>
 
@@ -66,7 +67,7 @@
                     Grid.Column="2"
                     Grid.ColumnSpan="3"
                     Background="White"  
-                    Visibility="Hidden"
+                    Visibility="Visible"
                     >
             <StackPanel VerticalAlignment="Center">
 
@@ -96,11 +97,12 @@
                                 FontWeight="Bold"
                                 >Folio:</TextBlock>
                                 <TextBlock
+                                Text="{Binding Folio}"
                                 Margin="5,0"
                                 TextWrapping="Wrap"
                                 TextAlignment="Left"
                                 FontSize="16"
-                                FontFamily="Arial"> CT0000</TextBlock>
+                                FontFamily="Arial"></TextBlock>
                             </WrapPanel>
 
                             <WrapPanel Orientation="Horizontal" >
@@ -114,9 +116,10 @@
                                 <TextBlock
                                 Margin="5,0"
                                 TextWrapping="Wrap"
+                                Text="{Binding Cliente}"
                                 TextAlignment="Left"
                                 FontSize="16"
-                                FontFamily="Arial"> Jose Alfredo Jimenez</TextBlock>
+                                FontFamily="Arial"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal" >
                                 <TextBlock
@@ -129,9 +132,26 @@
                                 <TextBlock
                                 Margin="5,0"
                                 TextWrapping="Wrap"
+                                Text="{Binding Mascota}"
                                 TextAlignment="Left"
                                 FontSize="16"
-                                FontFamily="Arial"> Firulais</TextBlock>
+                                FontFamily="Arial"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Orientation="Horizontal" >
+                                <TextBlock
+                                Margin="5,0"
+                                TextAlignment="Left"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                >Animal:</TextBlock>
+                                <TextBlock
+                                Margin="5,0"
+                                TextWrapping="Wrap"
+                                Text="{Binding Animal}"
+                                TextAlignment="Left"
+                                FontSize="16"
+                                FontFamily="Arial"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal" >
                                 <TextBlock
@@ -143,10 +163,11 @@
                                 >Sexo:</TextBlock>
                                 <TextBlock
                                 Margin="5,0"
+                                Text="{Binding Sexo}"
                                 TextWrapping="Wrap"
                                 TextAlignment="Left"
                                 FontSize="16"
-                                FontFamily="Arial"> Macho</TextBlock>
+                                FontFamily="Arial"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal" >
                                 <TextBlock
@@ -158,10 +179,11 @@
                                 >Edad:</TextBlock>
                                 <TextBlock
                                 Margin="5,0"
+                                Text="{Binding Edad}"
                                 TextWrapping="Wrap"
                                 TextAlignment="Left"
                                 FontSize="16"
-                                FontFamily="Arial"> 8</TextBlock>
+                                FontFamily="Arial"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal" >
                                 <TextBlock
@@ -174,9 +196,10 @@
                                 <TextBlock
                                 Margin="5,0"
                                 TextWrapping="Wrap"
+                                Text="{Binding Motivo}"
                                 TextAlignment="Left"
                                 FontSize="16"
-                                FontFamily="Arial"> Desparacitación</TextBlock>
+                                FontFamily="Arial"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Orientation="Horizontal" >
                                 <TextBlock
@@ -189,9 +212,10 @@
                                 <TextBlock
                                 Margin="5,0"
                                 TextWrapping="Wrap"
+                                Text="{Binding Notas}"
                                 TextAlignment="Left"
                                 FontSize="16"
-                                FontFamily="Arial"> Requiero factura</TextBlock>
+                                FontFamily="Arial"></TextBlock>
                             </WrapPanel>
                             <TextBox Margin="10,30,10,10"
                              materialDesign:HintAssist.Hint="Comentarios"
@@ -212,8 +236,9 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center">
 
-                    <Button                        
-                        Margin="20,0">Saltar cita</Button>
+                    <Button  
+                        x:Name="skipDate"
+                        Margin="20,0" Click="btnSkipDate">Saltar cita</Button>
                     <Button Margin="20,0">Escribir receta</Button>
                 </StackPanel>
 
@@ -226,10 +251,10 @@
                     Grid.Column="2"
                     Grid.ColumnSpan="3"
                     Background="White"  
-                    Visibility="Visible"
+                    Visibility="Hidden"
                     >
             <StackPanel VerticalAlignment="Center"
-                        Margin="40">
+                        Margin="20">
                 <TextBlock
                     FontFamily="Arial"
                     TextAlignment="Center"
@@ -240,7 +265,8 @@
                 </TextBlock>
                 <Image 
                     Source="../res/images/catHappy.png"
-                    Margin="40"></Image>
+                    Margin="10"
+                    Width="400"></Image>
                 <TextBlock TextAlignment="Center"
                            FontFamily="Arial"
                            FontSize="20">
