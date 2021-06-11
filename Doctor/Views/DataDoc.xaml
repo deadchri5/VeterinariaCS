@@ -1,4 +1,4 @@
-﻿<Page x:Class="Doctor.Views.DataDoc"
+﻿<UserControl x:Class="Doctor.Views.DataDoc"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:Doctor.Views"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="DataDoc">
+      d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
@@ -15,9 +14,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Margin="0,69,0,199.6" Grid.RowSpan="2">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Source="/res/images/doctor.png" Width="200"/>
+                <Image Source="/res/images/doctor.png" Width="150"/>
             </StackPanel>
         </Grid>
 
@@ -53,7 +52,7 @@
                                 FontSize="15"
                                 materialDesign:HintAssist.Hint="Apellido"
                                 VerticalAlignment="Bottom"
-                                Text="{Binding lastname}"/>
+                                Text="{Binding apellido}"/>
                     </StackPanel>
                 </materialDesign:Card>
             </Grid>
@@ -74,9 +73,5 @@
             </Grid>
         </Grid>
 
-        
-
-        
-
     </Grid>
-</Page>
+</UserControl>

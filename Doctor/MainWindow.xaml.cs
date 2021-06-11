@@ -35,6 +35,8 @@ namespace Doctor
             InitializeComponent();
             DataContext = this;
             initializePort();
+            TextBoxEmail.Text = "chris@veterinaria.com";
+            PasswordBoxContraseña.Password = "123";
         }
 
 

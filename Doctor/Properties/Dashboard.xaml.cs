@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Doctor.Models.ViewsModels;
 
 namespace Doctor.Properties
 {
@@ -26,7 +27,6 @@ namespace Doctor.Properties
 
         public Dashboard()
         {
-            DataContext = this;
             InitializeComponent();
             getUserData();
         }
@@ -54,6 +54,21 @@ namespace Doctor.Properties
             user = rd.getJSON();
             userName = $"{user.Name} {user.SureName}";
             TextBlockUserName.DataContext = userName;
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e) 
+        {
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "AgendDate":
+                    DataContext = new FinalizarCitaModel();
+                    break;
+                case "verDatos":
+                    DataContext = new DataDocModel();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using System.ComponentModel;
 namespace Doctor.Views
 {
 
-    public partial class FinalizarCita : Page
+    public partial class FinalizarCita : UserControl
     {
         FinalizarCitaModel finalizarCitaModel;
         private SerialPort arduinoPort;

@@ -73,6 +73,7 @@
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="Models\Commands\FinalizarTareaCommand.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\ViewsModels\DataDocModel.cs" />
     <Compile Include="Models\ViewsModels\FinalizarCitaModel.cs" />
     <Compile Include="ReadData.cs" />
     <Compile Include="Views\DataDoc.xaml.cs">
