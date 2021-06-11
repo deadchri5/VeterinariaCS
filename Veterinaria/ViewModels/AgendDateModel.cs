@@ -61,13 +61,13 @@ namespace Veterinaria.ViewModels
                     success = true;
                     if (note != null)
                     {
-                        db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo, Notas)" +
-                                    $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}', '{note}')");
+                        db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo, Notas, Status)" +
+                                    $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}', '{note}', 0)");
                     }
                     else
                     {
-                        db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo)" +
-                                    $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}')");
+                        db.executeQuery("INSERT INTO cita (Fecha, Hora, Codigo, Fk_doctor, Fk_Mascota, Motivo, Status)" +
+                                    $"VALUES('{_date}', '{_hour}', '{codeOfDate}', '{doctorID}', '{petID}', '{reason}', 0)");
                     }
                 }
                 else

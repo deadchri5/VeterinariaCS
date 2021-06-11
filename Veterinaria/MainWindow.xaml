@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:Veterinaria.ViewModels"
         xmlns:views="clr-namespace:Veterinaria.Views"
         mc:Ignorable="d"
-        Title="Veterinaria el Trunco" Height="530" Width="1043.6"
+        Title="Veterinaria" Height="530" Width="1043.6"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
