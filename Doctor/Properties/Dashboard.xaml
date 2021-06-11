@@ -62,7 +62,7 @@
             <Grid Background="#673ab7">
                 <TextBlock Text="Pet-Control" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="30" Padding="30 50 0 10" Foreground="White"/>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <TextBlock Text="Christan Ochoa" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+                    <TextBlock x:Name="TextBlockUserName" Text="{Binding}" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
                     <materialDesign:PopupBox HorizontalAlignment="Right" Margin="5" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Foreground="White">
                         <StackPanel Width="150">
                             <Button Content="Cuenta"/>

@@ -44,15 +44,15 @@
         <Grid Grid.Row="2">
             <StackPanel Orientation="Vertical"  Margin="40 20 0 0">
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Account" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
-                    <TextBox x:Name="user" Width="300" materialDesign:HintAssist.Hint="Usuario" materialDesign:HintAssist.IsFloating="True"/>
+                    <materialDesign:PackIcon Kind="Email" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
+                    <TextBox x:Name="TextBoxEmail" Width="300" materialDesign:HintAssist.Hint="Email" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=user, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 4" />
-                    <PasswordBox x:Name="pass" Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True"/>
+                    <PasswordBox x:Name="PasswordBoxContraseña" Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
-
-                <Button Content="Iniciar" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Width="80" HorizontalAlignment="Right" Margin="0 20 70 0" Click="Button_Click_1"/>
+                
+                <Button x:Name="BotonIniciar" Content="Iniciar" Style="{DynamicResource MaterialDesignRaisedAccentButton}" Width="80" HorizontalAlignment="Right" Margin="0 20 70 0" Click="Button_Click_1"/>
 
 
                 <materialDesign:Card Margin="0 10 10 10" Padding="15" materialDesign:ShadowAssist.ShadowDepth="Depth4">
