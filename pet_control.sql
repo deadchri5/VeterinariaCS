@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2021 a las 04:46:23
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.11
+-- Host: 127.0.0.1
+-- Generation Time: Jun 11, 2021 at 05:32 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pet_control`
+-- Database: `pet_control`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cita`
+-- Table structure for table `cita`
 --
 
 CREATE TABLE `cita` (
@@ -35,20 +35,22 @@ CREATE TABLE `cita` (
   `Fk_doctor` int(11) NOT NULL,
   `Fk_Mascota` int(11) NOT NULL,
   `Motivo` varchar(255) NOT NULL,
-  `Notas` varchar(255) DEFAULT NULL
+  `Notas` varchar(255) DEFAULT NULL,
+  `Status` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `cita`
+-- Dumping data for table `cita`
 --
 
-INSERT INTO `cita` (`Id`, `Fecha`, `Hora`, `Codigo`, `Fk_doctor`, `Fk_Mascota`, `Motivo`, `Notas`) VALUES
-(1, '2021-06-13', '15:30:00', 'CT0001', 2, 1, 'Tratamiento', 'Requiero factura');
+INSERT INTO `cita` (`Id`, `Fecha`, `Hora`, `Codigo`, `Fk_doctor`, `Fk_Mascota`, `Motivo`, `Notas`, `Status`) VALUES
+(1, '2021-06-13', '15:30:00', 'CT0001', 2, 1, 'Tratamiento', 'Requiero factura', 0),
+(25, '2021-06-11', '06:30:00', '237aa4c0', 2, 2, 'Corte de pelo y baño', 'Saludos', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Table structure for table `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -61,7 +63,7 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `cliente`
+-- Dumping data for table `cliente`
 --
 
 INSERT INTO `cliente` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tipo`) VALUES
@@ -74,7 +76,7 @@ INSERT INTO `cliente` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tip
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `doctor`
+-- Table structure for table `doctor`
 --
 
 CREATE TABLE `doctor` (
@@ -87,7 +89,7 @@ CREATE TABLE `doctor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `doctor`
+-- Dumping data for table `doctor`
 --
 
 INSERT INTO `doctor` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tipo`) VALUES
@@ -100,7 +102,7 @@ INSERT INTO `doctor` (`Id`, `Nombre`, `Apellidos`, `Email`, `Password`, `Fk_tipo
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `emergencia`
+-- Table structure for table `emergencia`
 --
 
 CREATE TABLE `emergencia` (
@@ -119,7 +121,7 @@ CREATE TABLE `emergencia` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mascota`
+-- Table structure for table `mascota`
 --
 
 CREATE TABLE `mascota` (
@@ -134,18 +136,18 @@ CREATE TABLE `mascota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `mascota`
+-- Dumping data for table `mascota`
 --
 
 INSERT INTO `mascota` (`Id`, `Nombre`, `Sexo`, `Edad`, `Fk_tipo`, `Fk_dueno`, `Fk_cita`, `Fk_receta`) VALUES
 (1, 'Bruno', 'Macho', 8, 1, 18, 1, NULL),
-(2, 'Patrick', 'Macho', 2, 1, 18, NULL, NULL),
+(2, 'Patrick', 'Macho', 2, 1, 18, 25, NULL),
 (20, 'Zicza', 'Hembra', 6, 1, 20, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `receta`
+-- Table structure for table `receta`
 --
 
 CREATE TABLE `receta` (
@@ -158,7 +160,7 @@ CREATE TABLE `receta` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `typepet`
+-- Table structure for table `typepet`
 --
 
 CREATE TABLE `typepet` (
@@ -168,7 +170,7 @@ CREATE TABLE `typepet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `typepet`
+-- Dumping data for table `typepet`
 --
 
 INSERT INTO `typepet` (`Id`, `Nombre`, `Tipo`) VALUES
@@ -182,7 +184,7 @@ INSERT INTO `typepet` (`Id`, `Nombre`, `Tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `typeuser`
+-- Table structure for table `typeuser`
 --
 
 CREATE TABLE `typeuser` (
@@ -192,7 +194,7 @@ CREATE TABLE `typeuser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `typeuser`
+-- Dumping data for table `typeuser`
 --
 
 INSERT INTO `typeuser` (`Id`, `Nombre`, `Tipo`) VALUES
@@ -200,11 +202,11 @@ INSERT INTO `typeuser` (`Id`, `Nombre`, `Tipo`) VALUES
 (2, 'Usuario', 2);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `cita`
+-- Indexes for table `cita`
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`Id`),
@@ -212,21 +214,21 @@ ALTER TABLE `cita`
   ADD KEY `Fk_Mascota` (`Fk_Mascota`);
 
 --
--- Indices de la tabla `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `fk-usuarios` (`Fk_tipo`);
 
 --
--- Indices de la tabla `doctor`
+-- Indexes for table `doctor`
 --
 ALTER TABLE `doctor`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `fk-doctores` (`Fk_tipo`);
 
 --
--- Indices de la tabla `emergencia`
+-- Indexes for table `emergencia`
 --
 ALTER TABLE `emergencia`
   ADD PRIMARY KEY (`Id`),
@@ -234,7 +236,7 @@ ALTER TABLE `emergencia`
   ADD KEY `fk-recetilla` (`Fk_receta`);
 
 --
--- Indices de la tabla `mascota`
+-- Indexes for table `mascota`
 --
 ALTER TABLE `mascota`
   ADD PRIMARY KEY (`Id`),
@@ -244,108 +246,108 @@ ALTER TABLE `mascota`
   ADD KEY `fk-receta` (`Fk_receta`);
 
 --
--- Indices de la tabla `receta`
+-- Indexes for table `receta`
 --
 ALTER TABLE `receta`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `fk-doctorcito` (`Fk_doctor`);
 
 --
--- Indices de la tabla `typepet`
+-- Indexes for table `typepet`
 --
 ALTER TABLE `typepet`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indices de la tabla `typeuser`
+-- Indexes for table `typeuser`
 --
 ALTER TABLE `typeuser`
   ADD PRIMARY KEY (`Id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `cita`
+-- AUTO_INCREMENT for table `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT de la tabla `cliente`
+-- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT de la tabla `doctor`
+-- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `emergencia`
+-- AUTO_INCREMENT for table `emergencia`
 --
 ALTER TABLE `emergencia`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `mascota`
+-- AUTO_INCREMENT for table `mascota`
 --
 ALTER TABLE `mascota`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT de la tabla `receta`
+-- AUTO_INCREMENT for table `receta`
 --
 ALTER TABLE `receta`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `typepet`
+-- AUTO_INCREMENT for table `typepet`
 --
 ALTER TABLE `typepet`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `typeuser`
+-- AUTO_INCREMENT for table `typeuser`
 --
 ALTER TABLE `typeuser`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `cita`
+-- Constraints for table `cita`
 --
 ALTER TABLE `cita`
   ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`Fk_Mascota`) REFERENCES `mascota` (`Id`),
   ADD CONSTRAINT `fk-doctor` FOREIGN KEY (`Fk_doctor`) REFERENCES `doctor` (`Id`);
 
 --
--- Filtros para la tabla `cliente`
+-- Constraints for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD CONSTRAINT `fk-usuarios` FOREIGN KEY (`Fk_tipo`) REFERENCES `typeuser` (`Id`);
 
 --
--- Filtros para la tabla `doctor`
+-- Constraints for table `doctor`
 --
 ALTER TABLE `doctor`
   ADD CONSTRAINT `fk-doctores` FOREIGN KEY (`Fk_tipo`) REFERENCES `typeuser` (`Id`);
 
 --
--- Filtros para la tabla `emergencia`
+-- Constraints for table `emergencia`
 --
 ALTER TABLE `emergencia`
   ADD CONSTRAINT `fk-doc` FOREIGN KEY (`Fk_doctor`) REFERENCES `doctor` (`Id`),
   ADD CONSTRAINT `fk-recetilla` FOREIGN KEY (`Fk_receta`) REFERENCES `receta` (`Id`);
 
 --
--- Filtros para la tabla `mascota`
+-- Constraints for table `mascota`
 --
 ALTER TABLE `mascota`
   ADD CONSTRAINT `fk-cita` FOREIGN KEY (`Fk_cita`) REFERENCES `cita` (`Id`),
@@ -354,7 +356,7 @@ ALTER TABLE `mascota`
   ADD CONSTRAINT `fk-tipom` FOREIGN KEY (`Fk_tipo`) REFERENCES `typepet` (`Id`);
 
 --
--- Filtros para la tabla `receta`
+-- Constraints for table `receta`
 --
 ALTER TABLE `receta`
   ADD CONSTRAINT `fk-doctorcito` FOREIGN KEY (`Fk_doctor`) REFERENCES `doctor` (`Id`);
